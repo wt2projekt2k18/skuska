@@ -21,6 +21,11 @@
         <input type="submit" name="submit" value="Prihlásiť sa">
     </form>
     <a href="registration.php">Registrácia</a>
+    <?php
+    if($_GET['reg']=="success"){
+        echo "Registrácia bola úspešná!";
+    }
+    ?>
 </div>
 <!--<footer>-->
 <!--    <h2>-->

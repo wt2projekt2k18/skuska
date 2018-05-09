@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="registration.css">
-    <script src="reg_script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="reg_script.js" async defer></script>
     <title>
         Projekt ku skúške
     </title>
@@ -17,7 +18,7 @@
 </header>
 <div>
     <h2>Registrácia</h2>
-    <form name="registration" method="get" onsubmit="return psccheck();">
+    <form id="formular" name="registration" action="reg_save.php" method="post">
         <label>Priezvisko
             <input type="text" name="surname" required>
         </label>
@@ -27,7 +28,12 @@
         </label>
         <br>
         <label>Email
-            <input type="email" name="email" required>
+            <input id="email" type="email" name="email" required>
+        </label>
+        <label style="color:red" id="emaillabel"></label>
+        <br>
+        <label>Heslo
+            <input type="password" name="password" required>
         </label>
         <br>
         <label>Bydlisko
@@ -37,6 +43,7 @@
         <label>PSČ
             <input id="psc" type="number" name="psc" required>
         </label>
+        <label style="color:red" id="psclabel"></label>
         <br>
         <label>Bydlisko (adresa)
             <input type="text" name="address" required>
