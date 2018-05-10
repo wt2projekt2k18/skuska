@@ -33,8 +33,9 @@
         <label style="color:red" id="emaillabel"></label>
         <br>
         <label>Heslo
-            <input type="password" name="password" required>
+            <input id="pw" type="password" name="password" required>
         </label>
+        <label style="color:red" id="pswlabel"></label>
         <br>
         <label>Bydlisko
             <input type="text" name="city" required>

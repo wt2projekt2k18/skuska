@@ -16,8 +16,22 @@ document.getElementById("formular").onsubmit = function () {
     var email = emailcheck(document.getElementById("email").value);
     var psc = psccheck();
     var answer = email.responseText !== "Email už existuje";
-    return answer && psc;
+    var pw=pass();
+    return answer && psc && pw;
 };
+
+function pass() {
+    var psw = document.getElementById("pw");
+    if (psw.value.length < 8) {
+        //psc.focus();
+        document.getElementById("pswlabel").innerHTML = "Heslo musí obsahovať minimálne 8 znakov";
+        return false;
+    }
+    else {
+        document.getElementById("pswlabel").innerHTML = "";
+        return true;
+    }
+}
 
 function psccheck() {
     var psc = document.getElementById("psc");
