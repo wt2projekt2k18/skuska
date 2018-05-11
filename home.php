@@ -46,7 +46,7 @@ session_start();
                 $_SESSION['psc'] = $result['PSC'];
                 $_SESSION['school'] = $result['School'];
                 $_SESSION['schooladdress'] = $result['Schooladdress'];
-                $_SESSION['admin']=$result['Admin'];
+                $_SESSION['admin'] = $result['Admin'];
                 echo "Ahoj, " . $_SESSION['name'];
             } else {
                 header("Location:index.php?login=wrongpassword");
@@ -61,13 +61,48 @@ session_start();
         exit();
     }
 
-    if(isset($_SESSION['admin'])){
-        if($_SESSION['admin']==1) {
-            echo "<br>Prihlásený ako admin";
+    if (isset($_SESSION['admin'])) {
+        if ($_SESSION['admin'] == 1) {
+            echo "<br>Prihlásený ako admin<br>";
+            echo "<form action='csvimport.php' method='post' enctype='multipart/form-data'>" .
+                "<label>Zvoľ csv súbor:" .
+                "<label style='background-color:gray; cursor:pointer; text-decoration:underline;' for='upload'>Klikni sem</label>" .
+                "<input type='hidden' name='MAX_FILE_SIZE' value='100000' />" .
+                "<input id='upload' style='display:none;' type='file' name='upload' value='csv'/></label>" .
+                "<input type='submit' name='submit' value='Nahrať užívateľov'>" .
+                "</form>";
+            if ($_GET['csverror']) {
+                echo "<label style='color:red' id=csv_err_msg>";
+                switch ($_GET['csverror']) {
+                    case "maxsize":
+                        echo "Súbor je príliš veľký.";
+                        break;
+                    case "partial":
+                        echo "Nebol nahraný celý súbor.";
+                        break;
+                    case "nofile":
+                        echo "Nebol zvolený súbor.";
+                        break;
+                    case "notmpdir":
+                        echo "Chyba v tmp priečinku.";
+                        break;
+                    case "cantwrite":
+                        echo "Chyba pri zápise.";
+                        break;
+                    case "wrongextension":
+                        echo "Chyba pri zistení typu súboru.";
+                        break;
+                    case "extensionerror":
+                        echo "Nahrali ste iný súbor ako .csv";
+                        break;
+                    default:
+                        echo "Iná chyba pri spracovaní súboru";
+                }
+                echo "</label>";
+            }
         }
         //else echo "<br>Obyčajný užívateľ";
-    }
-    else{
+    } else {
         header("Location:index.php?login=sessionerror");
         exit();
     }
