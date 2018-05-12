@@ -67,13 +67,12 @@
         <br id="break">
         <input type="submit" name="submit" value="Registrácia">
     </form>
+    <?php
+    if($_GET['reg']=="fail"){
+        echo "Registrácia nebola úspešná";
+    }
+    ?>
 
 </div>
-<!--<footer>-->
-<!--    <h2>-->
-<!--        *footer here*-->
-<!--    </h2>-->
-<!--</footer>-->
-
 </body>
 </html>

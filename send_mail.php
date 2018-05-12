@@ -18,7 +18,7 @@ $mail->Username="webte2tim18@gmail.com";
 $mail->Password="webteadmin";
 $mail->SetFrom("webte2tim18@gmail.com");
 $mail->Subject="Potvrdenie registrácie";
-$mail->Body="Ahoj,".$_POST['lastname']."<br><br> bla bla bla... klikni na <a href=http://147.175.98.149/Projekt%20ku%20skuske/verify.php?ver=".$_POST['verification'].">link</a> aby si dokončil svoju registráciu.";
+$mail->Body="Ahoj,".$_POST['lastname']."<br><br> bla bla bla... klikni na <a href=http://147.175.98.149/Projekt%20ku%20skuske/verify.php?ver=".$_POST['verification']."&mail=".$_POST['mail'].">link</a> aby si dokončil svoju registráciu.";
 $mail->AddAddress($_POST['mail']);
 if(!$mail->Send()){
 //echo "Mailer error".$mail->ErrorInfo;

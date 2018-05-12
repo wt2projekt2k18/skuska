@@ -37,17 +37,24 @@ session_start();
         $conn->close();
         if (!empty($result)) {
             if (password_verify($heslo, $result['Password'])) {
-                $_SESSION['email'] = $result['Email'];
-                $_SESSION['password'] = $result['Password'];
-                $_SESSION['name'] = $result['Name'];
-                $_SESSION['surname'] = $result['Surname'];
-                $_SESSION['city'] = $result['City'];
-                $_SESSION['address'] = $result['Address'];
-                $_SESSION['psc'] = $result['PSC'];
-                $_SESSION['school'] = $result['School'];
-                $_SESSION['schooladdress'] = $result['Schooladdress'];
-                $_SESSION['admin'] = $result['Admin'];
-                echo "Ahoj, " . $_SESSION['name'];
+                if($result["Verified"]==1) {
+                    $_SESSION['email'] = $result['Email'];
+                    $_SESSION['password'] = $result['Password'];
+                    $_SESSION['name'] = $result['Name'];
+                    $_SESSION['surname'] = $result['Surname'];
+                    $_SESSION['city'] = $result['City'];
+                    $_SESSION['address'] = $result['Address'];
+                    $_SESSION['psc'] = $result['PSC'];
+                    $_SESSION['school'] = $result['School'];
+                    $_SESSION['schooladdress'] = $result['Schooladdress'];
+                    $_SESSION['admin'] = $result['Admin'];
+                    echo "Ahoj, " . $_SESSION['name'];
+                    //TODO
+                }
+                else{
+                    header("Location:index.php?login=notverified");
+                    exit();
+                }
             } else {
                 header("Location:index.php?login=wrongpassword");
                 exit();
@@ -113,11 +120,5 @@ session_start();
 <form action="logout.php" method="post">
     <input type="submit" name="logout" value="logout">
 </form>
-<!--<footer>-->
-<!--    <h2>-->
-<!--        *footer here*-->
-<!--    </h2>-->
-<!--</footer>-->
-
 </body>
 </html>

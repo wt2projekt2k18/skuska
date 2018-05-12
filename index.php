@@ -33,7 +33,7 @@ if (isset($_SESSION['email'])) {
     <?php
 
     if($_GET['reg']=="success"){
-        echo "Registrácia bola úspešná!";
+        echo "Registrácia bola úspešná. Na zadanú emailovú adresu Vám bol odoslaný potvrdzovací email.";
     }
     if($_GET['logout']=="success"){
         echo "Boli ste odhlásený!";
@@ -50,6 +50,12 @@ if (isset($_SESSION['email'])) {
     }
     if($_GET['login']=="error" || $_GET['login']=="sessionerror") {
         echo "Neočakávaná chyba.";
+    }
+    if($_GET['login']=="notverified") {
+        echo "Váš účet nie je aktivovaný.";
+    }
+    if($_GET['reg']=="mailerror"){
+        echo "Nepodarilo sa odoslať email";
     }
     ?>
     </label>
