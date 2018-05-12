@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="97a3a4d7-9030-46b3-b78e-38a385181c21" name="webte projekt" url="http://147.175.98.149">
+        <fileTransfer host="147.175.98.149" port="22" rootFolder="/home/ximre/public_html/Projekt ku skuske" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="d38f129f-b1e5-421c-8c3c-cfcba46885ca" name="Gabriel" url="http://147.175.98.208">
+        <fileTransfer host="147.175.98.208" port="22" rootFolder="/home/xpulen/public_html" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

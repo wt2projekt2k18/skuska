@@ -30,8 +30,20 @@ if ($_POST['submit']) {
     $stmt->execute();
     $conn->query($sql);
     $conn->close();
-    header("Location:index.php?reg=success");
-    exit();
+
+    $code="test";
+    $message = "Your Activation Code is ".$code."";
+    $to=$_POST['email'];
+    $subject="Activation Code For WEBTE";
+    $from = 'pulen.gabor@gmail.com';
+    $body='Your Activation Code is '.$code.' Please Click On This link <a href="verification.php">Verify.php?id="testid"&code='.$code.'</a>to activate  your account.';
+    $headers = "From:".$from;
+    mail($to,$subject,$body,$headers);
+
+    echo "An Activation Code Is Sent To You Check You Emails";
+
+    //header("Location:index.php?reg=success");
+    //exit();
 } else {
     header("Location:registration.php?reg=fail");
     exit();
