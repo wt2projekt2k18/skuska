@@ -45,6 +45,18 @@ switch ($_FILES['upload']['error']) {
         header("location:home.php?csverror=other");
         exit();
 }
+
+//TODO link
+function utf8_fopen_read($fileName)
+{
+    $fc = iconv('windows-1250', 'utf-8', file_get_contents($fileName));
+    $handle = fopen("php://memory", "rw");
+    fwrite($handle, $fc);
+    fseek($handle, 0);
+    return $handle;
+}
+
+
 function spracujdata()
 {
     $csv_mimetypes = array(
@@ -62,9 +74,8 @@ function spracujdata()
     if (in_array($_FILES['upload']['type'], $csv_mimetypes)) {
         echo "csv OK<br>";
         //TODO Dalsie testy
-        $subor = fopen($_FILES['upload']['tmp_name'], "r");
+        $subor = utf8_fopen_read($_FILES['upload']['tmp_name']);
         fgetcsv($subor);//to skip first line
-
         // Create connection
         $servername = "localhost";
         $username = "root";
@@ -79,23 +90,29 @@ function spracujdata()
         if ($subor) {
             while (($buffer = fgets($subor, 4096)) !== false) {
                 $splitted = explode(";", $buffer, PHP_INT_MAX);
-                echo "<b>Priezvisko:</b> " . $splitted[1];
-                echo "<b>Meno :</b>" . $splitted[2];
-                echo "<b>Email :</b>" . $splitted[3];
-                echo "<b>Skola</b>:" . $splitted[4];
-                echo "<b>Skola (Adresa):</b>" . $splitted[5];
-                echo "<b>Bydlisko (ulica):</b>" . $splitted[6];
-                echo "<b>PSC:</b>" . $splitted[7];
-                echo "<b>Bydlisko (obec):</b>" . $splitted[8];
-                echo "<br>";
-                $psw="DEfault2018WT";
-                $newpsw=password_hash($psw,PASSWORD_DEFAULT);
+//                echo "<b>Priezvisko:</b> " . $splitted[1];
+//                echo "<b>Meno :</b>" . $splitted[2];
+//                echo "<b>Email :</b>" . $splitted[3];
+//                echo "<b>Skola</b>:" . $splitted[4];
+//                echo "<b>Skola (Adresa):</b>" . $splitted[5];
+//                echo "<b>Bydlisko (ulica):</b>" . $splitted[6];
+//                echo "<b>PSC:</b>" . $splitted[7];
+//                echo "<b>Bydlisko (obec):</b>" . $splitted[8];
+//                echo "<br>";
+                $psw = "DEfault2018WT";
+                $newpsw = password_hash($psw, PASSWORD_DEFAULT);
                 $sql = "INSERT INTO `users`( `Surname`, `Name`, `Email`,`Password`, `City`, `PSC`, `Address`, `School`, `Schooladdress`) VALUES (?,?,?,?,?,?,?,?,?)";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("sssssisss", $splitted[1], $splitted[2], $splitted[3], $newpsw, $splitted[8], $splitted[7], $splitted[6], $splitted[4], $splitted[5]);
                 $stmt->execute();
+                echo $stmt->error . "<br>";
+                if (strlen($stmt->error) > 0) {
+                    fclose($subor);
+                    $conn->close();
+                    header("location:home.php?csverror=stmterror");
+                    exit();
+                }
                 $conn->query($sql);
-                echo $conn->error."<br>";
             }
             if (!feof($subor)) {
                 header("location:home.php?csverror=unexpected");
@@ -103,8 +120,8 @@ function spracujdata()
             }
             fclose($subor);
             $conn->close();
-            //header("location:home.php?csvsuccess=true");
-            //exit();
+            header("location:home.php?csvsuccess=true");
+            exit();
         }
     } else {
         header("location:home.php?csverror=extensionerror");
