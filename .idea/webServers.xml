@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="97a3a4d7-9030-46b3-b78e-38a385181c21" name="webte projekt" url="http://147.175.98.149">
-        <fileTransfer host="147.175.98.149" port="22" rootFolder="/home/ximre/public_html/Projekt ku skuske" accessType="SFTP">
+        <fileTransfer host="147.175.98.149" port="22" rootFolder="/home/ximre/public_html/Projekt_ku_skuske" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>

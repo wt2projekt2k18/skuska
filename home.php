@@ -105,6 +105,10 @@ session_start();
                     default:
                         echo "Iná chyba pri spracovaní súboru";
                 }
+                if ($_GET['csvsuccess=true']){
+                    echo "<label style='color:green' id=csv_success_msg>";
+                    echo "Úspešne ste zaregistrovali užívateľov z csv súboru";
+                }
                 echo "</label>";
             }
         }
