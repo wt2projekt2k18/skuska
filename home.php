@@ -9,7 +9,7 @@ session_start();
     <title>
         Projekt ku skúške
     </title>
-
+    <script src="map/userMap.js" type="text/javascript"></script>
 </head>
 <body>
 <header>
@@ -37,7 +37,7 @@ session_start();
         $conn->close();
         if (!empty($result)) {
             if (password_verify($heslo, $result['Password'])) {
-                if($result["Verified"]==1) {
+                if ($result["Verified"] == 1) {
                     $_SESSION['email'] = $result['Email'];
                     $_SESSION['password'] = $result['Password'];
                     $_SESSION['name'] = $result['Name'];
@@ -50,8 +50,7 @@ session_start();
                     $_SESSION['admin'] = $result['Admin'];
                     echo "Ahoj, " . $_SESSION['name'];
                     //TODO
-                }
-                else{
+                } else {
                     header("Location:index.php?login=notverified");
                     exit();
                 }
@@ -105,7 +104,7 @@ session_start();
                     default:
                         echo "Iná chyba pri spracovaní súboru";
                 }
-                if ($_GET['csvsuccess=true']){
+                if ($_GET['csvsuccess=true']) {
                     echo "<label style='color:green' id=csv_success_msg>";
                     echo "Úspešne ste zaregistrovali užívateľov z csv súboru";
                 }
@@ -124,5 +123,15 @@ session_start();
 <form action="logout.php" method="post">
     <input type="submit" name="logout" value="logout">
 </form>
+
+<!-- GOOGLE MAP -->
+<div id="map" style="height: 400px; width: 600px;"></div>
+<div id="right-panel">
+    <p>Total Distance: <span id="total"></span></p>
+</div>
+
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5J2wo0KFU2gxeSPhMAs1VA3MxALbXbKU&callback=initMap"></script>
 </body>
 </html>
