@@ -56,9 +56,21 @@ function utf8_fopen_read($fileName)
     return $handle;
 }
 
+function randomstring($length)
+{
+    $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    $string = '';
+    $max = strlen($characters) - 1;
+    for ($i = 0; $i < $length; $i++) {
+        $string .= $characters[mt_rand(0, $max)];
+    }
+    return $string;
+}
+
 
 function spracujdata()
 {
+    $mailstring = "<table> <tr><th>Priezvisko</th><th>Meno</th><th>Heslo</th></tr>";
     $csv_mimetypes = array(
         'text/csv',
         'text/plain',
@@ -99,8 +111,9 @@ function spracujdata()
 //                echo "<b>PSC:</b>" . $splitted[7];
 //                echo "<b>Bydlisko (obec):</b>" . $splitted[8];
 //                echo "<br>";
-                $psw = "DEfault2018WT";
+                $psw = randomstring(20);
                 $newpsw = password_hash($psw, PASSWORD_DEFAULT);
+                $mailstring .= "<tr><td>" . $splitted[1] . "</td><td>" . $splitted[2] . "</td><td>" . $psw . "</td></tr>";
                 $sql = "INSERT INTO `users`( `Surname`, `Name`, `Email`,`Password`, `City`, `PSC`, `Address`, `School`, `Schooladdress`) VALUES (?,?,?,?,?,?,?,?,?)";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("sssssisss", $splitted[1], $splitted[2], $splitted[3], $newpsw, $splitted[8], $splitted[7], $splitted[6], $splitted[4], $splitted[5]);
@@ -120,8 +133,13 @@ function spracujdata()
             }
             fclose($subor);
             $conn->close();
-            header("location:home.php?csvsuccess=true");
-            exit();
+            $mailstring .= "</table>";
+            echo "<form id='csvform' action='send_mail.php' method='post'>
+                <input type='hidden' name='mail' value='webte2tim18@gmail.com'>
+                <input type='hidden' name='csv' value='" . $mailstring . "'>
+          </form>";
+            echo "<script>document.getElementById('csvform').submit();</script>";
+
         }
     } else {
         header("location:home.php?csverror=extensionerror");

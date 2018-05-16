@@ -9,6 +9,8 @@ session_start();
     <title>
         Projekt ku skúške
     </title>
+    <!--<script src="prototype.js" type="text/javascript"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="map/userMap.js" type="text/javascript"></script>
 </head>
 <body>
@@ -39,6 +41,7 @@ session_start();
             if (password_verify($heslo, $result['Password'])) {
                 if ($result["Verified"] == 1) {
                     $_SESSION['email'] = $result['Email'];
+                    $_SESSION['id'] = $result['ID'];
                     $_SESSION['password'] = $result['Password'];
                     $_SESSION['name'] = $result['Name'];
                     $_SESSION['surname'] = $result['Surname'];
@@ -126,8 +129,8 @@ session_start();
 
 <!-- GOOGLE MAP -->
 <div id="map" style="height: 400px; width: 600px;"></div>
-<div id="right-panel">
-    <p>Total Distance: <span id="total"></span></p>
+<div id="steps-panel">
+    <p>Total Distance: <span id="dlzka-trasy"></span></p>
 </div>
 
 
