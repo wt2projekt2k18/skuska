@@ -10,16 +10,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="reg_script.js" async defer></script>
     <title>
-        Projekt ku skúške
+        Fast & FEIous
     </title>
 
 </head>
 <body>
-<header>
+<!--<header>
     <h1>
         Názov stránky
     </h1>
-</header>
+</header>-->
 <div>
     <h2>Registrácia</h2>
     <form id="formular" name="registration" action="reg_save.php" method="post">

@@ -1,3 +1,15 @@
 header,h1{
     text-align: center;
 }
+
+#logoFast{
+    width: 120px;
+  
+}
+#navbarIndex{
+    height: 75px;
+}
+#loginForm{
+    position: absolute;
+    top: 75px;
+}

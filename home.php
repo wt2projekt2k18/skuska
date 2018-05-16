@@ -54,6 +54,13 @@ session_start();
                     echo "Ahoj, " . $_SESSION['name'];
                     //TODO
                 } else {
+                    if ($result["Verified"] == 2) {
+                        echo "<form id='setpsw' action='newpassword.php' method='post'>
+                        <input type='hidden' name='usermail' value='".$result['Email']."'>
+                        </form>";
+                        echo "<script>document.getElementById('setpsw').submit();</script>";
+                        exit();
+                    }
                     header("Location:index.php?login=notverified");
                     exit();
                 }

@@ -46,6 +46,23 @@ function psccheck() {
     }
 }
 
+//document.getElementById("pswchange").onsubmit = function(){return passwordmatch()};
+//document.getElementById("psw2").onkeyup = function(){passwordmatch()};
+
+function passwordmatch() {
+    alert("vstup do funkcie");
+    var prvy=document.getElementById("psw1").value;
+    var druhy=document.getElementById("psw2").value;
+    var odpoved=document.getElementById("matchreturn");
+    if(prvy===druhy){
+        odpoved.innerHTML="Heslá sa zhodujú";
+        return true;
+    }
+    else odpoved.innerHTML="Heslá sa nezhodujú";
+    return false;
+
+}
+
 function emailcheck(val) {
     return $.ajax({
         type: "POST",

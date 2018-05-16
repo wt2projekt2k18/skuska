@@ -15,21 +15,43 @@ if (isset($_SESSION['email'])) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <title>
-        Projekt ku skúške
+        Fast & FEIous
     </title>
 </head>
 <body>
-<header>
-    <h1>
-        Názov stránky
-    </h1>
-</header>
-<div>
-    <form action="home.php" method="post">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Heslo">
-        <input type="submit" name="login" value="Prihlásiť sa">
+<div class="navbar-fixed">
+    <nav id="navbarIndex" class="white">
+        <div class="nav-wrapper container">
+        <a href="index.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-black-720.png" alt="logo"></a>
+        </div>
+    </nav>
+</div>
+</nav>
+
+
+
+
+<div class="container">
+    <div id="loginForm" class="row">
+    <form class="col s12" action="home.php" method="post">   
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="email" type="email" class="validate">
+                <label for="email">Email</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+            </div>
+        </div>
+        <div>
+            <input type="submit" name="login" value="Login">
+        </div>
     </form>
+    </div>
+
     <a href="registration.php">Registrácia</a>
     <label id="returnsuccess">
     <?php
@@ -62,6 +84,11 @@ if (isset($_SESSION['email'])) {
     ?>
     </label>
 </div>
+
+
+
+
+
 <!--<footer>-->
 <!--    <h2>-->
 <!--        *footer here*-->

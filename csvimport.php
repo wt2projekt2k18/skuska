@@ -111,12 +111,13 @@ function spracujdata()
 //                echo "<b>PSC:</b>" . $splitted[7];
 //                echo "<b>Bydlisko (obec):</b>" . $splitted[8];
 //                echo "<br>";
+                $konstanta=2;
                 $psw = randomstring(20);
                 $newpsw = password_hash($psw, PASSWORD_DEFAULT);
                 $mailstring .= "<tr><td>" . $splitted[1] . "</td><td>" . $splitted[2] . "</td><td>" . $psw . "</td></tr>";
-                $sql = "INSERT INTO `users`( `Surname`, `Name`, `Email`,`Password`, `City`, `PSC`, `Address`, `School`, `Schooladdress`) VALUES (?,?,?,?,?,?,?,?,?)";
+                $sql = "INSERT INTO `users`( `Surname`, `Name`, `Email`,`Password`, `City`, `PSC`, `Address`, `School`, `Schooladdress`, `Verified`) VALUES (?,?,?,?,?,?,?,?,?,?)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("sssssisss", $splitted[1], $splitted[2], $splitted[3], $newpsw, $splitted[8], $splitted[7], $splitted[6], $splitted[4], $splitted[5]);
+                $stmt->bind_param("sssssisssi", $splitted[1], $splitted[2], $splitted[3], $newpsw, $splitted[8], $splitted[7], $splitted[6], $splitted[4], $splitted[5],$konstanta);
                 $stmt->execute();
                 echo $stmt->error . "<br>";
                 if (strlen($stmt->error) > 0) {
