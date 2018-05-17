@@ -1,27 +1,27 @@
 <!DOCTYPE HTML>
-<html lang="sk">
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/> 
     <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="registration.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="reg_script.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <title>
         Fast & FEIous
     </title>
-
 </head>
-<body>
-<!--<header>
-    <h1>
-        Názov stránky
-    </h1>
-</header>-->
-<div>
-    <h2>Registrácia</h2>
+<body id="gradientIndex">
+<div class="navbar-fixed">
+    <nav id="navbarIndex" class="blue-grey darken-4">
+        <div class="nav-wrapper container">
+            <a href="index.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-white-720.png" alt="logo"></a>
+        </div>
+    </nav>
+</div>
+
+<div id="loginForm" class="container">
     <form id="formular" name="registration" action="reg_save.php" method="post">
         <label>Priezvisko
             <input type="text" name="surname" required>
@@ -76,9 +76,35 @@
         echo "Registrácia nebola úspešná";
     }
     ?>
-
 </div>
 
+<footer class="page-footer blue-grey darken-4">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h5 class="white-text">Subscribe to our newsletter!</h5>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix white-text">alternate_email</i>
+                        <input id="emailNewsletter" type="text" name="emailNewsletter" class="white-text">
+                        <label for="emailNewsletter">Email</label>
+                    </div>
+                    <button type="submit" name="buttonNewsletter" class="col s3 offset-s2 btn waves-effect waves-light blue-grey darken-3">
+                        <a href="" class="white-text">Subscribe</a><i class="material-icons right white-text">thumb_up_alt</i>         
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright blue-grey darken-3">
+        <div class="container">
+        &copy; 2018 WEBTE2
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+    </div>
+</footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="styleJS.js"></script>
 </body>
 </html>

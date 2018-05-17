@@ -1,15 +1,102 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
 header,h1{
     text-align: center;
 }
+footer.page-footer {
+    margin: 0;
+}
+p {
+    line-height: 2rem;
+}
+
+/*registration.css*/
+div#optional{
+    display: none;
+}
+br#break{
+    display:none;
+}
+
+.parallax-container {
+    min-height: 380px;
+    /*top: 150px;*/
+    /*min-height: 460px;*/
+    line-height: 0;
+    height: auto;
+    color: rgba(255,255,255,.9);
+}
+.parallax-container .section {
+    width: 100%;
+}
+/*@media only screen and (max-width : 992px) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+    #index-banner .section {
+        top: 10%;
+    }
+} 
+@media only screen and (max-width : 600px) {
+    #index-banner .section {
+        top: 0;
+    }
+  
+}*/
 
 #logoFast{
-    width: 120px;
-  
+    width: 100px;
+    padding-top: 5px;
+    padding-bottom: 5px; 
 }
-#navbarIndex{
+/*#navbarIndex{
     height: 75px;
-}
+}*/
 #loginForm{
+    position: relative;
+    padding-top: 10%;
+    padding-bottom: 8%;
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+#gradientIndex {
+    
+    background: linear-gradient(to bottom right, #1D4350, #a43931);
+
+}
+#loginButton {
+    /*position: absolute;
+    right: 50%;
+    transform: translateX(50%);*/
+}
+
+#ultraboostImage {
+    /*-webkit-filter: opacity(30%); 
+    filter: opacity(30%);*/
+    
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+    -webkit-filter: brightness(0.40);
+    filter: brightness(0.40);
+    
+}
+#ultraboostParallax {
+    /*position: relative;
+    margin-top: 10%;*/
+}
+
+#ultraboostText {
     position: absolute;
-    top: 75px;
+    bottom: 50%;
+    transform: translateY(50%);
 }
