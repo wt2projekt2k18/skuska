@@ -1,7 +1,9 @@
-body, html {
-    height: 100%;
-    width: 100%;
-    margin: 0;
+html {
+    min-height: 100%;
+    /*width: 100%;*/
+    /*margin: 0;*/
+    background-size: cover;
+    background-repeat:no-repeat;
 }
 header,h1{
     text-align: center;
@@ -58,8 +60,8 @@ br#break{
 }*/
 #loginForm{
     position: relative;
-    padding-top: 10%;
-    padding-bottom: 8%;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 .icon-block {
@@ -69,10 +71,8 @@ br#break{
     font-size: inherit;
 }
 
-#gradientIndex {
-    
+#gradientIndex { 
     background: linear-gradient(to bottom right, #1D4350, #a43931);
-
 }
 #loginButton {
     /*position: absolute;

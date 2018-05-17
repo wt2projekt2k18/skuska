@@ -8,14 +8,14 @@
 if(isset($_POST['content'])){
     $t=time();
     $datum=(date("d.m.Y",$t));
-    $text=file_get_contents("news_body.html");
-    $text.="<div><label><b>News added [".$datum."]:</b></label><br>".$_POST['content']."<br><br></div>";
+    $text="<div><label><b>News added [".$datum."]:</b></label><br>".$_POST['content']."<br><br></div>";
+    $text.=file_get_contents("news_body.html");
     $text = str_replace(["\r\n", "\r", "\n"], "<br/>", $text);
     file_put_contents("news_body.html",$text);
-    header("Location:news.php?append=success");
+    header("Location:news.php?admin=true&append=success");
     exit();
 }
 else{
-    header("Location:news.php?append=fail");
+    header("Location:news.php?admin=true&append=fail");
     exit();
 }

@@ -31,12 +31,12 @@ if ($_POST['submit']) {
     if (strlen($_POST['school']) > 0) {
         $sql = "INSERT INTO `users`( `Surname`, `Name`, `Email`,`Password`, `City`, `PSC`, `Address`, `School`, `Schooladdress`, `Verification`) VALUES (?,?,?,?,?,?,?,?,?,?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssissss", $_POST['surname'], $_POST['name'], $_POST['email'], $newpassword, $_POST['city'], $_POST['psc'], $_POST['address'], $_POST['school'], $_POST['schooladdress'], $verification);
+        $stmt->bind_param("sssssissss", $_POST['surname'], $_POST['firstname'], $_POST['email'], $newpassword, $_POST['city'], $_POST['psc'], $_POST['address'], $_POST['school'], $_POST['schooladdress'], $verification);
 
     } else {
         $sql = "INSERT INTO `users`( `Surname`, `Name`, `Email`,`Password`, `City`, `PSC`, `Address`, `Verification`) VALUES (?,?,?,?,?,?,?,?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssiss", $_POST['surname'], $_POST['name'], $_POST['email'], $newpassword, $_POST['city'], $_POST['psc'], $_POST['address'], $verification);
+        $stmt->bind_param("sssssiss", $_POST['surname'], $_POST['firstname'], $_POST['email'], $newpassword, $_POST['city'], $_POST['psc'], $_POST['address'], $verification);
     }
     $stmt->execute();
     $conn->query($sql);
@@ -45,7 +45,7 @@ if ($_POST['submit']) {
     echo "<form id='mailform' action='send_mail.php' method='post'>
                 <input type='hidden' name='mail' value='" . $_POST['email'] . "'>
                 <input type='hidden' name='verification' value='" . $verification . "'>
-                <input type='hidden' name='lastname' value='" . $_POST['name'] . "'>
+                <input type='hidden' name='lastname' value='" . $_POST['firstname'] . "'>
           </form>";
     echo "<script>document.getElementById('mailform').submit();</script>";
     //header("Location:send_mail.php?mail=".$_POST['email']);

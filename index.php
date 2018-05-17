@@ -46,17 +46,30 @@ if (isset($_SESSION['email'])) {
             </div>
         </div>
         
-        <div class="row">
-            <button id="loginButton" type="submit" name="login" class="col s3 offset-s2 btn waves-effect waves-light blue-grey darken-4">
-                Sign in<i class="material-icons right white-text">keyboard_arrow_right</i>      
-            </button>
-            
-            <button id="regButton" type="submit" name="login" class="col s3 offset-s2 btn waves-effect waves-light blue-grey darken-4">
-                <a href="registration.php" class="white-text">Sign up</a><i class="material-icons right white-text">keyboard_arrow_right</i>     
-            </button>
-        </div>   
+        <button id="loginButton" type="submit" name="login" class="col s4 offset-s4 btn waves-effect waves-light blue-grey darken-4">
+            Sign in<i class="material-icons right white-text">keyboard_arrow_right</i>      
+        </button>
     </form>
+    
     </div>
+    <div class="row">
+  
+        <form action="registration.php" class="white-text">
+            <button id="regButton" type="submit" name="login" class="col s4 offset-s4 btn waves-effect waves-light blue-grey darken-4">
+                Sign up</a><i class="material-icons right white-text">keyboard_arrow_right</i>     
+            </button>
+        </form>
+
+        <!--<a href="registration.php" class="white-text">
+            <button id="regButton" type="submit" name="login" class="col s4 offset-s4 btn waves-effect waves-light blue-grey darken-4">
+                Sign up</a><i class="material-icons right white-text">keyboard_arrow_right</i>     
+            </button>
+        </a>-->
+        
+        
+    </div>
+
+    
 
     <div align="center"><label id="returnsuccess">
     <?php
