@@ -12,6 +12,6 @@ $data = $_POST['data'];
 $query = $conn->query("SELECT `Email` FROM `users` WHERE Email='$data'");
 $result = $query->fetch_assoc();
 if (!empty($result)) {
-    echo "Email already exists.";
+    echo "Email already exists";
 }
 $conn->close();

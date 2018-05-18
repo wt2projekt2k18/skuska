@@ -5,17 +5,18 @@
  * Date: 09-May-18
  * Time: 12:11 PM
  */
-require "config.php";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-$conn->set_charset("utf8");
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-require "stringgenerator.php";
 
-if ($_POST['submit']) {
+
+if ($_POST['csapasdneki']) {
+    require "config.php";
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn->set_charset("utf8");
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    require "stringgenerator.php";
     $heslo = $_POST["password"];
     $newpassword = password_hash($heslo, PASSWORD_DEFAULT);
     $verification = randomstring(20);
@@ -30,6 +31,11 @@ if ($_POST['submit']) {
         $stmt->bind_param("sssssiss", $_POST['surname'], $_POST['firstname'], $_POST['email'], $newpassword, $_POST['city'], $_POST['psc'], $_POST['address'], $verification);
     }
     $stmt->execute();
+    if (strlen($stmt->error) > 0) {
+        echo $stmt->error;
+        //header("Location:index.php?reg=dberror");
+        //exit();
+    }
     $conn->query($sql);
     $conn->close();
 

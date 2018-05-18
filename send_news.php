@@ -20,7 +20,7 @@ ob_start();
 include "news.php";
 $output = ob_get_contents();
 ob_end_clean();
-echo $output;
+//echo $output;
 
 $mail = new PHPMailer();
 $mail->IsSMTP();

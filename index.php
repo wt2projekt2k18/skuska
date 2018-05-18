@@ -57,10 +57,10 @@ if (isset($_SESSION['email'])) {
     </div>
     <div class="row">
 
-        <form action="registration.php" class="white-text">
-            <button id="regButton" type="submit" name="login"
+        <form action="registration.php" class="white-text" method="post">
+            <button id="regButton" name="login"
                     class="col s4 offset-s4 btn waves-effect waves-light blue-grey darken-3">
-                Sign up</a><i class="material-icons right white-text">keyboard_arrow_up</i>
+                Sign up<i class="material-icons right white-text">keyboard_arrow_up</i>
             </button>
         </form>
     </div>
