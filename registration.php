@@ -24,7 +24,7 @@
 
 <div id="loginForm" class="container">
     <div class="row">
-        <form id="formular" name="registration"  method="post" class="col s12">
+        <form id="formular" name="registration" action="reg_save.php"  method="post" class="col s12">
             <div class="row">
                 <div class="input-field col s6">
                     <i class="material-icons prefix white-text">person</i>
@@ -137,11 +137,11 @@
                 </div>
             </div>
             <br id="break">
-            <input type="submit" name="submit" value="Registrácia">
-<!--            <button id="regButton2" name="csapasdneki" value="Hello"-->
-<!--                    class="col s4 offset-s4 btn waves-effect waves-light blue-grey darken-4">-->
-<!--                <span class="white-text">Sign up</span><i class="material-icons right white-text">keyboard_arrow_right</i>-->
-<!--            </button>-->
+<!--            <input type="submit" name="submit" value="Registrácia">-->
+            <button id="regButton2" name="csapasdneki" value="Hello"
+                    class="col s4 offset-s4 btn waves-effect waves-light blue-grey darken-4">
+                <span class="white-text">Sign up</span><i class="material-icons right white-text">keyboard_arrow_right</i>
+            </button>
         </form>
     </div>
     <?php

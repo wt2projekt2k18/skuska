@@ -13,7 +13,6 @@ function highschoolcheck() {
 }
 
 document.getElementById("formular").onsubmit = function () {
-    alert("halo");
     var email = emailcheck(document.getElementById("email").value);
     var psc = psccheck();
     var answer = email.responseText !== "Email already exists";
