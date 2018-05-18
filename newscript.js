@@ -5,14 +5,14 @@ function passwordmatch() {
     var odpoved = document.getElementById("matchreturn");
 
     if (prvy === druhy) {
-        odpoved.innerHTML = "Heslá sa zhodujú";
+        odpoved.innerHTML = "Passwords match";
         if (prvy.length < 8) {
-            odpoved.innerHTML = "Heslo musí mať najmenej 8 znakov";
+            odpoved.innerHTML = "Password must be at least 8 characters long.";
             return false;
         }
         return true;
     }
-    else odpoved.innerHTML = "Heslá sa nezhodujú";
+    else odpoved.innerHTML = "Passwords do not match";
     return false;
 }
 

@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <title>
-        Projekt ku skúške
+        Fast & FEIous
     </title>
 </head>
 <body>
@@ -39,21 +39,21 @@ if ($_GET['ver']) {
         if ($result['Verification'] == $code) {
             $conn->query("UPDATE `users` SET `Verified`=1 WHERE Email='$user'");
             $conn->close();
-            echo "Verifikácia bola úspešná";
+            echo "Verification was successful.";
         } else {
             $conn->close();
-            echo "Chyba pri verifikácií";
+            echo "Error during verification.";
         }
     } else {
         $conn->close();
-        echo "Užívateľ nebol nájdený";
+        echo "User not found.";
     }
 
 } else {
-    echo "Neočakávaná chyba";
+    echo "Unexpected error has occoured.";
 }
 echo "</label>";
-echo "<a href='index.php'><button>Úvodná stránka</button></a>";
+echo "<a href='index.php'><button>Homepage</button></a>";
 ?>
 </div>
 

@@ -27,5 +27,4 @@ if (isset($_POST['psw1']) && isset($_POST['usertochange'])) {
 } else {
     header("Location:index.php?newpsw=fail");
     exit();
-    //TODO: index.php echo
 }

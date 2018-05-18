@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script type="text/javascript" src='newscript.js'></script>
     <title>
-        Projekt ku skúške
+        Fast & FEIous
     </title>
 </head>
 <body>
@@ -21,7 +21,7 @@
 <?php
     if (isset($_POST['usermail'])) {
         echo "
-          <label>Pri prvom prihlásení musíš zmeniť heslo<br></label>
+          <label>Please type in a new password:<br></label>
           <form id='pswchange' action='pswchange.php' method='post' onsubmit='return passwordmatch()'>
           <label>Zadaj heslo:<input id='psw1' type='password' name='psw1' onkeyup='passwordmatch()'></label><br>
           <label>Zadaj heslo znovu:<input id='psw2' type='password' name='psw2' onkeyup='passwordmatch()'></label><br>

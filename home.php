@@ -79,44 +79,44 @@ session_start();
 
     if (isset($_SESSION['admin'])) {
         if ($_SESSION['admin'] == 1) {
-            echo "<br>Prihlásený ako admin<br>";
+            echo "<br>Signed in as administraton<br>";
             echo "<form action='csvimport.php' method='post' enctype='multipart/form-data'>" .
-                "<label>Zvoľ csv súbor:" .
-                "<label style='background-color:gray; cursor:pointer; text-decoration:underline;' for='upload'>Klikni sem</label>" .
+                "<label>Please choose a csv file:" .
+                "<label style='background-color:gray; cursor:pointer; text-decoration:underline;' for='upload'>Click here</label>" .
                 "<input type='hidden' name='MAX_FILE_SIZE' value='100000' />" .
                 "<input id='upload' style='display:none;' type='file' name='upload' value='csv'/></label>" .
-                "<input type='submit' name='submit' value='Nahrať užívateľov'>" .
+                "<input type='submit' name='submit' value='Import users'>" .
                 "</form>";
             if ($_GET['csverror']) {
                 echo "<label style='color:red' id=csv_err_msg>";
                 switch ($_GET['csverror']) {
                     case "maxsize":
-                        echo "Súbor je príliš veľký.";
+                        echo "The file is too large.";
                         break;
                     case "partial":
-                        echo "Nebol nahraný celý súbor.";
+                        echo "The file was only partially uploaded.";
                         break;
                     case "nofile":
-                        echo "Nebol zvolený súbor.";
+                        echo "No file chosen.";
                         break;
                     case "notmpdir":
-                        echo "Chyba v tmp priečinku.";
+                        echo "Error in temporary directory.";
                         break;
                     case "cantwrite":
-                        echo "Chyba pri zápise.";
+                        echo "Could not write to file.";
                         break;
                     case "wrongextension":
-                        echo "Chyba pri zistení typu súboru.";
+                        echo "File has unsupported extension.";
                         break;
                     case "extensionerror":
-                        echo "Nahrali ste iný súbor ako .csv";
+                        echo "Your file isn't a csv file.";
                         break;
                     default:
-                        echo "Iná chyba pri spracovaní súboru";
+                        echo "An unexpected error ha occoured.";
                 }
                 if ($_GET['csvsuccess=true']) {
                     echo "<label style='color:green' id=csv_success_msg>";
-                    echo "Úspešne ste zaregistrovali užívateľov z csv súboru";
+                    echo "Users have been successfully imported from the csv file";
                 }
                 echo "</label>";
             }
