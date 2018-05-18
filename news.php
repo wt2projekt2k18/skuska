@@ -13,37 +13,59 @@ session_start();
         Fast & FEIous
     </title>
 </head>
-<body>
-
-<div class="row">
-    <div class="col s12 m5">
-        <div class="card-panel teal">
-        <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-        </span>
+<body id="gradientIndex">
+<div class="navbar-fixed">
+    <nav id="navbarIndex" class="blue-grey darken-4">
+        <div class="nav-wrapper container">
+            <a href="index.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-white-720.png" alt="logo"></a>
         </div>
-    </div>
+    </nav>
 </div>
 
-<div>
+<div id="newsContainer" class="container">
     <?php
-    $content = file_get_contents("news_body.html");
-    echo $content;
+    
     if (isset($_SESSION['admin']) && isset($_GET['admin'])) {
         if ($_SESSION['admin'] == 1 && $_GET['admin']=="true") {
             //TODO Zmenit velkost inputu podla potreby
-            echo "<form name='aktuality' method='post' action='addnews.php'>
-              <label> Add news:</label><br>
-              <textarea rows='4' cols='50' name='content'></textarea><br>
-              <input type='submit' name='submit' value='Add'>              
-              </form>
-              <a href='send_news.php'><button>Send newsletter</button></a> 
+            echo "<div class='row'><form name='aktuality' method='post' action='addnews.php' class='col s8 offset-s2'><div class='row'>
+                <div class='input-field col s12'>
+                    <textarea id='textarea1' name='content' class='materialize-textarea white-text'></textarea>
+                    <label for='textarea1'>News textarea</label>
+                </div>
+                <button id='csapasdnekiButton' name='submit' value='Add news' class='col s4 offset-s4 btn waves-effect waves-light blue-grey darken-3'>
+                    <span class='white-text'>Add news</span><i class='material-icons right white-text'>fiber_new</i>
+                </button>
+              <!--<input type='submit' name='submit' value='Add news'>-->
+              </div></form></div>
+
+              <!--<a href='send_news.php'><button>Send newsletter<i class='material-icons right white-text'>send</i></button></a>-->
+
+            <div class='row'><form action='send_news.php' class='white-text'>
+                <button id='csapasdButton' class='col s4 offset-s4 btn waves-effect waves-light blue-grey darken-4'>
+                    Send newsletter<i class='material-icons right white-text'>send</i>
+                </button>
+            </form></div>
               ";
             //TODO 4 return messages
         }
     }
+    $content = file_get_contents("news_body.html");
+    echo $content;
+
     ?>
 </div>
+
+<footer class="page-footer blue-grey darken-4">
+    <div class="footer-copyright blue-grey darken-3">
+        <div class="container">
+            &copy; 2018 WEBTE2
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+    </div>
+</footer>
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 <script src="styleJS.js"></script>

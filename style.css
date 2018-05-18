@@ -100,3 +100,7 @@ br#break{
     bottom: 50%;
     transform: translateY(50%);
 }
+
+#newsContainer {
+    margin-top: 5%;
+}
