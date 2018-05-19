@@ -18,6 +18,11 @@ session_start();
     <nav id="navbarIndex" class="blue-grey darken-4">
         <div class="nav-wrapper container">
             <a href="index.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-white-720.png" alt="logo"></a>
+
+            <ul class="left">
+                <li><a class='waves-effect waves-light white-text' href='where_you_from.php'><i class='material-icons white-text'>map</i></a></li>
+                <li><a class='waves-effect waves-light white-text' href='news.php?admin=true'><i class='material-icons white-text'>fiber_new</i></a></li>
+            </ul>
         </div>
     </nav>
 </div>
@@ -33,7 +38,7 @@ session_start();
                     <textarea id='textarea1' name='content' class='materialize-textarea white-text'></textarea>
                     <label for='textarea1'>News textarea</label>
                 </div>
-                <button id='csapasdnekiButton' name='submit' value='Add news' class='col s4 offset-s4 btn waves-effect waves-light blue-grey darken-3'>
+                <button id='csapasdnekiButton' name='submit' value='Add news' class='col s6 offset-s3 btn waves-effect waves-light blue-grey darken-3'>
                     <span class='white-text'>Add news</span><i class='material-icons right white-text'>fiber_new</i>
                 </button>
               <!--<input type='submit' name='submit' value='Add news'>-->

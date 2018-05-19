@@ -42,7 +42,7 @@ function getSession() {
         url: "map/loadRoutesFromDatabase.php",
         async: false,
         success: function (data) {
-            alert(data);
+            // alert(data);
         }
     });
 
