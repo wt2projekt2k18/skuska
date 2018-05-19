@@ -45,30 +45,13 @@ br#break{
 .parallax-container .section {
     width: 100%;
 }
-/*@media only screen and (max-width : 992px) {
-    .parallax-container .section {
-        position: absolute;
-        top: 40%;
-    }
-    #index-banner .section {
-        top: 10%;
-    }
-} 
-@media only screen and (max-width : 600px) {
-    #index-banner .section {
-        top: 0;
-    }
-  
-}*/
 
 #logoFast{
     width: 100px;
     padding-top: 5px;
     padding-bottom: 5px; 
 }
-/*#navbarIndex{
-    height: 75px;
-}*/
+
 #loginForm{
     position: relative;
     padding-top: 5%;
@@ -85,11 +68,6 @@ br#break{
 #gradientIndex { 
     background: linear-gradient(to bottom right, #1D4350, #a43931);
 }
-#loginButton {
-    /*position: absolute;
-    right: 50%;
-    transform: translateX(50%);*/
-}
 
 #ultraboostImage {
     /*-webkit-filter: opacity(30%); 
@@ -100,10 +78,6 @@ br#break{
     -webkit-filter: brightness(0.40);
     filter: brightness(0.40);
     
-}
-#ultraboostParallax {
-    /*position: relative;
-    margin-top: 10%;*/
 }
 
 #ultraboostText {
@@ -116,13 +90,43 @@ br#break{
     margin-top: 5%;
 }
 
-html, body#map {
+html {
     height: 100%;
     width: 100%;
     padding: 0;
     margin: 0;
     
     /*height: 720px;*/
-    /*padding: 0;
-    margin: 0;*/
+
+}
+
+#routeForm, 
+#test2, 
+#test3,
+#csvContainer {
+    position: relative;
+    padding-top: 25px;
+    /*padding-bottom: 2%;*/
+    
+}
+
+.tabWrapper{
+    position: relative;
+    height: 190px;
+}
+
+#sidenavButton {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+#allRoutes {
+    overflow-y: scroll; /*vertical scroll*/ 
+}
+
+#mapCheckbox {
+    position: relative;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }

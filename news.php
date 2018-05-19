@@ -15,14 +15,15 @@ session_start();
 </head>
 <body id="gradientIndex">
 <div class="navbar-fixed">
-    <nav id="navbarIndex" class="blue-grey darken-4">
-        <div class="nav-wrapper container">
-            <a href="index.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-white-720.png" alt="logo"></a>
-
-            <ul class="left">
-                <li><a class='waves-effect waves-light white-text' href='where_you_from.php'><i class='material-icons white-text'>map</i></a></li>
+    <nav class="blue-grey darken-4">
+        <div class="nav-wrapper">
+            <a href="home.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-white-720.png" alt="logo"></a>
+    
+            <ul class="right">
+                <li><a class='waves-effect waves-light white-text' href='index_map/indexGmap_final.php'><i class='material-icons white-text'>map</i></a></li>
                 <li><a class='waves-effect waves-light white-text' href='news.php?admin=true'><i class='material-icons white-text'>fiber_new</i></a></li>
             </ul>
+    
         </div>
     </nav>
 </div>
@@ -69,8 +70,6 @@ session_start();
         </div>
     </div>
 </footer>
-
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 <script src="styleJS.js"></script>

@@ -16,7 +16,7 @@ session_start();
 
 
 //test session
-$_SESSION['id'] = 69;
+$_SESSION['id'] = 404;
 //
 
 
@@ -27,16 +27,6 @@ $admin = $link->query("SELECT `Admin` FROM `users` WHERE `ID`=\"" . $_SESSION['i
 $users = $link->query("SELECT * FROM `users`");
 $loggeduser = $link->query("SELECT * FROM `users` WHERE `ID`=\"" . $_SESSION['id'] . "\"");
 //$run = $link->query("SELECT * FROM run WHERE `route_id`=\"" . $route_row[] . "\"");
-
-
-if($_GET['usertable']){
-	GetRoutes($usertable);
-}
-
-function GetRoutes($id){
-	echo "notworkingproperlyyet $id";
-	//$UserRoutes = $link->query("SELECT * FROM `routes` WHERE `user_id`=\"".$id."\" OR `type`=2");
-}
 
 ?>
 <!DOCTYPE html>
@@ -64,7 +54,8 @@ function GetRoutes($id){
 						</thead> ";
                 if ($users->num_rows > 0) {
                     while($userrow = $users->fetch_assoc()) {
-                       echo "<tr onClick='location.href=\"?usertable=$userrow[ID]\"'>
+                       //echo "<tr onClick='location.href=\"?usertable=$userrow[ID]\"'>
+					   echo "<tr onclick=getUserRoutes(".$userrow[ID].")>
 								<td>".$userrow["Name"]."</td>
 								<td>".$userrow["Surname"]."</td>
 							</tr>";
@@ -95,5 +86,21 @@ function GetRoutes($id){
             }
             ?>
         </table>
+		
+	<script type="text/javascript">
+	function getUserRoutes(id){
+		$.ajax({
+			type: "POST",
+			url: "8_helpf.php",
+			data:{user: id},
+			context: this,
+			success: function(data){
+				console.log(this);
+				//$(this).append(data);
+			}
+		});
+	}
+    </script>
+	
 	</body>
 </html>

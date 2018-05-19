@@ -14,7 +14,7 @@ $connection->set_charset("utf8");
 if ($_POST['typ'] === "school")
     $result = $connection->query("SELECT count(*) as total from users WHERE Schooladdress=\"" . $_POST['address'] . "\"");
 else
-    $result = $connection->query("SELECT count(*) as total from users WHERE Address=\"" . $_POST['address'] . "\"");
+    $result = $connection->query("SELECT count(*) as total from users WHERE 1");
 
 $data=$result->fetch_assoc();
 
