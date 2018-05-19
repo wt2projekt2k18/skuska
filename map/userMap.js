@@ -24,6 +24,8 @@ function initMap(get) {
 
     params = get;
 
+    alert("userMap.js ALERT: " + params);
+
     getRoutes();
 
     //
@@ -147,23 +149,23 @@ function initSearchInput() {
 
         endPlaceSet = true;
 
-        // if (startPlaceSet && endPlaceSet) {
-        //   directionsDisplay = new google.maps.DirectionsRenderer({
-        //     map: map,
-        //     panel: document.getElementById('steps-panel'),
-        //     polylineOptions: {
-        //       strokeColor: "yellow"
-        //     }
-        //   });
-        //
-        //   var request = {
-        //     origin: startPlaceLocation,
-        //     destination: endPlaceLocation,
-        //     travelMode: 'WALKING'
-        //   };
-        //
-        //   displayRoute(request, directionsService, directionsDisplay);
-        // }
+        if (startPlaceSet && endPlaceSet) {
+          directionsDisplay = new google.maps.DirectionsRenderer({
+            map: map,
+            panel: document.getElementById('steps-panel'),
+            polylineOptions: {
+              strokeColor: "yellow"
+            }
+          });
+
+          var request = {
+            origin: startPlaceLocation,
+            destination: endPlaceLocation,
+            travelMode: 'WALKING'
+          };
+
+          displayRoute(request, directionsService, directionsDisplay);
+        }
     });
 }
 

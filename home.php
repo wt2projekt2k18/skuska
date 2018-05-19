@@ -199,7 +199,6 @@ session_start();
     </form>
 </div>
 
-
 <div id="routeForm" class="col s12 tabWrapper container ">
     <div class="row">
         <form action="#" id="formNewRoute" enctype="multipart/form-data" method="post" class="col s12">
@@ -239,8 +238,6 @@ session_start();
     </div>
     
 </div>
-
-
 
 <div id="map" style="height: 720px"></div>
 
@@ -333,8 +330,6 @@ session_start();
             params += "&end_lat=" + endLat;
             params += "&end_long=" + endLon;
             params += "&length=" + distance;
-
-            alert(params);
         }
 
         $.ajax({
