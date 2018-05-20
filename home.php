@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/xml; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/plain; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,7 +13,7 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
-    <script src="map/userMap.js" type="text/javascript"></script>
+
     <title>
         Fast & FEIous
     </title>
@@ -362,7 +362,7 @@ session_start();
             },
             url: "https://www.webte2tim18.sk/Projekt_ku_skuske/map/change_route_status.php",
             success : function (data) {
-                console.log(data);
+                console.log(JSON.parse(data));
 
                 initMap({
                     page : currentPage
@@ -381,12 +381,13 @@ session_start();
     <div class="footer-copyright blue-grey darken-3">
         <div class="container">
             &copy; 2018 WEBTE2
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            <a class="grey-text text-lighten-4 right" href="about.html">About</a>
         </div>
     </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 <script src="styleJS.js"></script>
+<script src="map/userMap.js" type="text/javascript"></script>
 </body>
 </html> 

@@ -18,6 +18,14 @@
           <option name="port" value="22" />
         </fileTransfer>
       </webServer>
+      <webServer id="7fd230ee-e2e5-4e9b-8855-ee24c791935f" name="Kiserlet" url="http://147.175.98.149">
+        <fileTransfer host="147.175.98.149" port="22" rootFolder="/home/ximre/public_html/Legujabb" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

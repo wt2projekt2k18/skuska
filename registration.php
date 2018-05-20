@@ -176,7 +176,7 @@
     <div class="footer-copyright blue-grey darken-3">
         <div class="container">
             &copy; 2018 WEBTE2
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            <a class="grey-text text-lighten-4 right" href="about.html">About</a>
         </div>
     </div>
 </footer>

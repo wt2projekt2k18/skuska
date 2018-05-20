@@ -145,25 +145,27 @@ if (isset($_SESSION['email'])) {
                         <!--                </button>-->
 
                         <button type="submit" name="buttonNewsletter"
-                                class="col s3 offset-s2 btn waves-effect waves-light blue-grey darken-3">
+                                class="col s6 btn waves-effect waves-light blue-grey darken-3" align="center">
                             <span class="white-text">Subscribe</span><i class="material-icons right white-text">thumb_up_alt</i>
                         </button>
                     </form>
-                    <br>
-                    <label>
-                        <?php
-                        if ($_GET['subscription'] == "success") {
-                            echo "You have been successfully subscribed to our newsletter. Thank you for your subscription.";
-                        }
-                        if ($_GET['subscription'] == "fail") {
-                            echo "Subscription failed. Please try again.";
-                        }
-                        if ($_GET['subscription'] == "dberror") {
-                            echo "An error has occoured during saving your data. Please contact an administrator.";
-                        }
+                    <div class="col s6" align="center">
+                        <label>
+                            <?php
+                            if ($_GET['subscription'] == "success") {
+                                echo "You have been successfully subscribed to our newsletter.<br> Thank you for your subscription.";
+                            }
+                            if ($_GET['subscription'] == "fail") {
+                                echo "Subscription failed. Please try again.";
+                            }
+                            if ($_GET['subscription'] == "dberror") {
+                                echo "An error has occoured during saving your data.<br> Please contact an administrator.";
+                            }
 
-                        ?>
-                    </label>
+                            ?>
+                        </label>
+                    </div>
+                    
 
                 </div>
             </div>
@@ -182,7 +184,7 @@ if (isset($_SESSION['email'])) {
     <div class="footer-copyright blue-grey darken-3">
         <div class="container">
             &copy; 2018 WEBTE2
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            <a class="grey-text text-lighten-4 right" href="about.html">About</a>
         </div>
     </div>
 </footer>

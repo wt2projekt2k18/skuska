@@ -9,6 +9,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="Kiserlet">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$/../../test" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="webte projekt">
         <serverdata>
           <mappings>

@@ -16,17 +16,13 @@ session_start();
 
 
 //test session
-$_SESSION['id'] = 404;
+$_SESSION['id'] = 66;
 //
 
 
 // Queries
-//$q = $link->query("SELECT * FROM routes WHERE user_id=\"" . $_SESSION['id'] . "\"");
-$routes = $link->query("SELECT * FROM `routes`");
-$admin = $link->query("SELECT `Admin` FROM `users` WHERE `ID`=\"" . $_SESSION['id'] . "\"");
+$admin = $link->query("SELECT `Admin` FROM `users` WHERE `ID`=\"".$_SESSION['id']."\"");
 $users = $link->query("SELECT * FROM `users`");
-$loggeduser = $link->query("SELECT * FROM `users` WHERE `ID`=\"" . $_SESSION['id'] . "\"");
-//$run = $link->query("SELECT * FROM run WHERE `route_id`=\"" . $route_row[] . "\"");
 
 ?>
 <!DOCTYPE html>
@@ -54,8 +50,7 @@ $loggeduser = $link->query("SELECT * FROM `users` WHERE `ID`=\"" . $_SESSION['id
 						</thead> ";
                 if ($users->num_rows > 0) {
                     while($userrow = $users->fetch_assoc()) {
-                       //echo "<tr onClick='location.href=\"?usertable=$userrow[ID]\"'>
-					   echo "<tr onclick=getUserRoutes(".$userrow[ID].")>
+					   echo "<tr id=".$userrow[ID]." onclick=getUserRoutes(".$userrow[ID].")>
 								<td>".$userrow["Name"]."</td>
 								<td>".$userrow["Surname"]."</td>
 							</tr>";
@@ -64,12 +59,13 @@ $loggeduser = $link->query("SELECT * FROM `users` WHERE `ID`=\"" . $_SESSION['id
                     echo "<tr><td>No users</td></tr>";
                 }
             } else {
-				$UserRoutes = $link->query("SELECT * FROM `routes` WHERE `user_id`=\"" . $_SESSION['id'] . "\" OR `type`=2");
+				$UserRoutes = $link->query("SELECT * FROM `routes` WHERE `user_id`=\"".$_SESSION['id']."\" OR `type`=2");
 				echo " 	<thead>
 							<th>Start</th>
 							<th>Finish</th>
 							<th>Progress</th>
 							<th>Type</th>
+							<th>Speed</th>
 						</thead> ";
 				if ($UserRoutes->num_rows > 0) {
 					while($RouteRow = $UserRoutes->fetch_assoc()) {
@@ -78,6 +74,7 @@ $loggeduser = $link->query("SELECT * FROM `users` WHERE `ID`=\"" . $_SESSION['id
 									<td>".$RouteRow["end"]."</td>
 									<td>".$RouteRow["progress"]."</td>
 									<td>".Mod_enum::mod($RouteRow["type"])."</td>
+									<td>TODO</td>
 								</tr>";
 					}
 				} else {
@@ -91,12 +88,12 @@ $loggeduser = $link->query("SELECT * FROM `users` WHERE `ID`=\"" . $_SESSION['id
 	function getUserRoutes(id){
 		$.ajax({
 			type: "POST",
-			url: "8_helpf.php",
+			url: "8910_helpf.php",
 			data:{user: id},
 			context: this,
 			success: function(data){
-				console.log(this);
-				//$(this).append(data);
+				$("#clicked").remove(); 
+				$(data).insertAfter("#"+id).closest('tr');
 			}
 		});
 	}

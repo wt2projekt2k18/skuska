@@ -24,8 +24,6 @@ function initMap(get) {
 
     params = get;
 
-    alert("userMap.js ALERT: " + params);
-
     getRoutes();
 
     //
@@ -170,18 +168,14 @@ function initSearchInput() {
 }
 
 function getRoutes() {
-
     $.ajax({
         type: "GET",
         url: "https://www.webte2tim18.sk/Projekt_ku_skuske/map/loadRoutesFromDatabase.php",
         async: false,
         data: params,
         success: function (data) {
-
             console.log(data);
-            // alert("som tu");
             var routes = JSON.parse(data);
-            console.log("anyad bazd+ : " + routes);
 
             for (var i = 0 ; i < routes.length ; i ++) {
 
