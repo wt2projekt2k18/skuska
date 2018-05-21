@@ -111,6 +111,9 @@ if (isset($_SESSION['email'])) {
             if ($_GET['newpsw'] == "fail") {
                 echo "Could not set new password for your account. Please contact an administrator.";
             }
+            if ($_GET['reg'] == "dberror") {
+                echo "Could not save your data to database. Please contact an administrator.";
+            }
             ?>
         </label></div>
 </div>

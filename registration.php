@@ -105,6 +105,9 @@
     if ($_GET['reg'] == "fail") {
         echo "Error during sign up.";
     }
+    if ($_GET['reg'] == "fail") {
+        echo "Could not send confirmation mail. Please contact an administrator.";
+    }
     ?>
 </div>
 

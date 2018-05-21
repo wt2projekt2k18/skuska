@@ -33,8 +33,8 @@ if ($_POST['csapasdneki']) {
     $stmt->execute();
     if (strlen($stmt->error) > 0) {
         echo $stmt->error;
-        //header("Location:index.php?reg=dberror");
-        //exit();
+        header("Location:index.php?reg=dberror");
+        exit();
     }
     $conn->query($sql);
     $conn->close();

@@ -177,6 +177,12 @@ session_start();
                     case "extensionerror":
                         echo "Your file isn't a csv file.";
                         break;
+                    case "stmterror":
+                        echo "Could not save some of the users to database.";
+                        break;
+                    case "mailerror":
+                        echo "Could not send email with default passwords.";
+                        break;
                     default:
                         echo "An unexpected error ha occoured.";
                 }

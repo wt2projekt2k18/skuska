@@ -14,9 +14,6 @@ $bum = $bu->fetch_assoc();
 
 if ( !empty($bum) && !($bum['route_id'] == $_POST['id']))
 {
-    $doc = new DomDocument;
-    $doc->validateOnParse = true;
-    $doc->getElementById($_POST['id'])->removeAttribute("checked");
     echo "uz mas aktivnu trasu";
 
 } else {
