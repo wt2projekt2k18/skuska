@@ -10,9 +10,10 @@ session_start();
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+
 
     <title>
         Fast & FEIous
@@ -31,20 +32,23 @@ session_start();
 <body id="gradientIndex">
 
 <?php
-    if(isset($_POST['start']) AND $_POST['start'] != null) {
-        echo $_POST['start'];
-        echo $_POST['end'];
-    }
+if (isset($_POST['start']) AND $_POST['start'] != null) {
+    echo $_POST['start'];
+    echo $_POST['end'];
+}
 ?>
 
 
 <nav class="nav-extended blue-grey darken-4">
     <div class="nav-wrapper">
-        <a href="home.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-white-720.png" alt="logo"></a>
+        <a href="home.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-white-720.png"
+                                                          alt="logo"></a>
 
         <ul class="right">
-            <li><a class='waves-effect waves-light white-text' href='index_map/indexGmap_final.php'><i class='material-icons white-text'>map</i></a></li>
-            <li><a class='waves-effect waves-light white-text' href='news.php?admin=true'><i class='material-icons white-text'>fiber_new</i></a></li>
+            <li><a class='waves-effect waves-light white-text' href='index_map/indexGmap_final.php'><i
+                            class='material-icons white-text'>map</i></a></li>
+            <li><a class='waves-effect waves-light white-text' href='news.php?admin=true'><i
+                            class='material-icons white-text'>fiber_new</i></a></li>
         </ul>
 
     </div>
@@ -55,37 +59,78 @@ session_start();
             <li class="tab"><a href="#test3">Test3</a></li>
             <li class="tab"><a href="#csvContainer">CSV</a></li>
         </ul>
-    </div>  
-</nav>    
+    </div>
+</nav>
 
-<a id="sidenavButton" href="#" data-target="slide-out" class="sidenav-trigger teal btn waves-effect waves-light white-text"><i class="material-icons white-text">menu</i></a>
+<a id="sidenavButton" href="#" data-target="slide-out"
+   class="sidenav-trigger teal btn waves-effect waves-light white-text"><i
+            class="material-icons white-text">menu</i></a>
 
 
 <ul id="slide-out" class="sidenav blue-grey darken-3">
-    <li><div class="user-view">
-        <div class="background">
-        <img src="img/sw.jpg">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="img/sw.jpg">
+            </div>
+            <a href="#"><i class="material-icons white-text large">person</i></a>
+            <a href="#"><span class="white-text name">User</span></a>
+            <a href="#"><span class="white-text info">info</span></a>
         </div>
-        <a href="#"><i class="material-icons white-text large">person</i></a>
-        <a href="#"><span class="white-text name">User</span></a>
-        <a href="#"><span class="white-text info">info</span></a>
-    </div></li>
+    </li>
     <li><a href="#!"><i class="material-icons">cloud</i>First Link</a></li>
 
-    <li><div class="divider"></div></li>
+    <li>
+        <div class="divider"></div>
+    </li>
     <li><a class="subheader">Subheader</a></li>
     <li><a class="waves-effect" href="#!">RandomLink</a></li>
     <form action="logout.php" method="post" class="container">
-        <input type="submit" name="logout" value="logout" class="btn waves-effect waves-light ">    
+        <input type="submit" name="logout" value="logout" class="btn waves-effect waves-light ">
     </form>
-    
+
 </ul>
 
-<div id="test2" class="col s12 container tabWrapper">Test 2</div>
+<div id="test2" class="col s12 container tabWrapper">
+    <form action="faszom.php" method="post">
+        <label>Počet odbehnutých kilometrov
+            <input type="number" name="km" min="1" max="42" oninput="validity.valid||(value='');">
+        </label>
+        <label>Day
+            <input type="date" name="day" min="2018-05-21" max="2030-12-31" value="<?php echo date("Y-m-j")?>" oninput="validity.valid||(value='<?php echo date("Y-m-j")?>');">
+        </label>
+        <label>Start
+            <input type="time" name="start">
+        </label>
+        <label>End
+            <input type="time" name="end">
+        </label>
+        <label>GPS start
+            <input type="text" name="gpsstart">
+        </label>
+        <label>GPS end
+            <input type="text" name="gpsend">
+        </label>
+        <label>Rating
+            <select>
+                <option name="1" value="1">Never again</option>
+                <option name="2" value="2">Poor</option>
+                <option name="3" value="3">OK</option>
+                <option name="4" value="4">Like it</option>
+                <option name="5" value="5">Fantastic</option>
+            </select>
+        </label>
+        <label>Comment
+            <input type="text" name="comment">
+        </label>
+    </form>
+    <label id="NE_TORULD_KI">Returnmessage</label>
+    Test 2
+</div>
 <div id="test3" class="col s12 container tabWrapper">Test 3</div>
 
 <div id="csvContainer" class="col s12 container tabWrapper white-text">
-<!--<div id="csvContainer" class="">-->
+    <!--<div id="csvContainer" class="">-->
     <?php
     require "config.php";
     // Create connection
@@ -122,7 +167,7 @@ session_start();
                 } else {
                     if ($result["Verified"] == 2) {
                         echo "<form id='setpsw' action='newpassword.php' method='post'>
-                        <input type='hidden' name='usermail' value='".$result['Email']."'>
+                        <input type='hidden' name='usermail' value='" . $result['Email'] . "'>
                         </form>";
                         echo "<script>document.getElementById('setpsw').submit();</script>";
                         exit();
@@ -201,7 +246,7 @@ session_start();
 
     ?>
     <form action="logout.php" method="post" class="container">
-        <input type="submit" name="logout" value="logout" class="btn waves-effect waves-light ">    
+        <input type="submit" name="logout" value="logout" class="btn waves-effect waves-light ">
     </form>
 </div>
 
@@ -220,15 +265,14 @@ session_start();
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <select  name="type">
+                    <select name="type">
                         <option value="1">Private mode</option>
                         <?php
-                        if (isset($_SESSION['admin']) AND $_SESSION['admin'] == 1)
-                        {
+                        if (isset($_SESSION['admin']) AND $_SESSION['admin'] == 1) {
                             echo '<option value="2">Public mode</option>';
                             echo '<option value="3">Štafetový mode</option>';
                         }
-                        ?>       
+                        ?>
                     </select>
                     <label>Select mode</label>
                 </div>
@@ -238,33 +282,33 @@ session_start();
                 <div class="col s3">
                     <a class="waves-effect waves-light btn modal-trigger" href="#allRoutes">All</a>
                 </div>
-                
+
             </div>
         </form>
     </div>
-    
+
 </div>
 
 <div id="map" style="height: 650px"></div>
 
-<div id="allRoutes" class="modal bottom-sheet" style="background-color: inherit">
+<div id="allRoutes" class="modal bottom-sheet" style="background-color: inherit"> <!-- bottom-sheet -->
     <div class="modal-content blue-grey darken-4 white-text">
 
-    <?php
-        if (isset($_SESSION['admin']) AND $_SESSION['admin'] == 1)
-        {
+        <?php
+        if (isset($_SESSION['admin']) AND $_SESSION['admin'] == 1) {
             echo '<input type="text" id="myInput" class="row input-field col s12" onkeyup="myFunction()" placeholder="Search for names">'; // <div class="row"><div >  </div></div>
         }
-    ?>
+        ?>
 
         <div id="routeTable"></div>
     </div>
-<!--    <div class="modal-footer">-->
-<!--      -->
-<!--    </div>-->
+    <!--    <div class="modal-footer">-->
+    <!--      -->
+    <!--    </div>-->
 </div>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5J2wo0KFU2gxeSPhMAs1VA3MxALbXbKU&callback=initMap&libraries=places,geometry"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5J2wo0KFU2gxeSPhMAs1VA3MxALbXbKU&callback=initMap&libraries=places,geometry"></script>
 
 <script>
 
@@ -293,12 +337,12 @@ session_start();
 
     function refreshTable(page) {
         $.ajax({
-            url : "/Projekt_ku_skuske/map/route_table.php",
+            url: "/Projekt_ku_skuske/map/route_table.php",
             method: "GET",
-            data : {
-                page : page
+            data: {
+                page: page
             },
-            success : function (data) {
+            success: function (data) {
                 $('#routeTable').html(data);
 
                 $('#routeTable .routeTablePage').on('click', function (e) {
@@ -308,7 +352,7 @@ session_start();
 
                 currentPage = page;
                 initMap({
-                    page : page
+                    page: page
                 })
             }
         });
@@ -329,7 +373,7 @@ session_start();
             var endLat = endPlaceLocation.lat();
             var endLon = endPlaceLocation.lng();
 
-            var distance = google.maps.geometry.spherical.computeDistanceBetween (startPlaceLocation, endPlaceLocation);
+            var distance = google.maps.geometry.spherical.computeDistanceBetween(startPlaceLocation, endPlaceLocation);
 
             params += "&start_lat=" + startLat;
             params += "&start_long=" + startLon;
@@ -342,8 +386,8 @@ session_start();
 
         var directionsService = new google.maps.DirectionsService;
 
-        var start =  new google.maps.LatLng(startLat, startLon);
-        var end =  new google.maps.LatLng(endLat,endLon);
+        var start = new google.maps.LatLng(startLat, startLon);
+        var end = new google.maps.LatLng(endLat, endLon);
 
         var request = {
             origin: start,
@@ -351,82 +395,82 @@ session_start();
             travelMode: 'WALKING'
         };
 
-        tryRoute( request, directionsService, params);
+        tryRoute(request, directionsService, params);
 
-   /*     $.ajax({
-            method : "POST",
-            url : "/Projekt_ku_skuske/map/save_route.php",
-            data : params,
-            success: function (data) {
-                console.log(data);
-                refreshTable(1);
-            },
-            error : function (data) {
-                console.log(data);
-                data = JSON.parse(data.responseText);
-                var message = '';
+        /*     $.ajax({
+                 method : "POST",
+                 url : "/Projekt_ku_skuske/map/save_route.php",
+                 data : params,
+                 success: function (data) {
+                     console.log(data);
+                     refreshTable(1);
+                 },
+                 error : function (data) {
+                     console.log(data);
+                     data = JSON.parse(data.responseText);
+                     var message = '';
 
 
-                for (var i = 0 ; i < data.errors.length ; i++) {
-                    message += data.errors[i] + "\n";
-                }
-                alert(message);
-            }
-        });*/
+                     for (var i = 0 ; i < data.errors.length ; i++) {
+                         message += data.errors[i] + "\n";
+                     }
+                     alert(message);
+                 }
+             });*/
     });
 
 
     $('body').on('click', '.switch-active-slider', function () {
 //        alert("bubub");
-
-                    $.ajax({
-                        method : "POST",
-                        data : {
-                            id : $(this).data('id')
-                        },
-                        url: "/Projekt_ku_skuske/map/change_route_status.php",
-                        success : function (result) {
-                            console.log("result : " + result);
-                            if (result)
-                            {
-                                alert(result);
+        var box = $(this).data('id');
+        $.ajax({
+            method: "POST",
+            data: {
+                id: $(this).data('id')
+            },
+            url: "/Projekt_ku_skuske/map/change_route_status.php",
+            success: function (result) {
+                console.log("result : " + result);
+                if (result) {
+                    alert(result);
 //                                refreshTable(1);
-//                                document.getElementById($(this).data('id')).removeAttr("checked");
-                            }
-                            initMap({
-                                page : currentPage
-                            });
-                        },
-                        error : function (d) {
-                            d = JSON.parse(d.responseText);
-
-                            console.log(d);
-                        }
+                    document.getElementById(box).checked = false;
+                } else {
+                    initMap({
+                        page: currentPage
                     });
+                }
+            },
+            error: function (d) {
+                d = JSON.parse(d.responseText);
+
+                console.log(d);
+            }
+        });
 
     });
 
     function tryRoute(request, service, params) {
         console.log("try");
-        service.route(request, function(response, status) {
+        service.route(request, function (response, status) {
 
             if (status === 'OK') {
 
                 $.ajax({
-                    method : "POST",
-                    url : "/Projekt_ku_skuske/map/save_route.php",
-                    data : params,
+                    method: "POST",
+                    url: "/Projekt_ku_skuske/map/save_route.php",
+                    data: params,
                     success: function (data) {
                         console.log(data);
                         refreshTable(1);
                     },
-                    error : function (data) {
+                    error: function (data) {
                         console.log(data);
                         data = JSON.parse(data.responseText);
                         var message = '';
 
 
-                        for (var i = 0 ; i < data.errors.length ; i++) {
+                        for (var i = 0; i < data.errors.length; i++) {
                             message += data.errors[i] + "\n";
                         }
                         alert(message);
@@ -437,6 +481,11 @@ session_start();
                 console.log("Nastala chyba v zapise : " + status);
             }
         });
+    }
+
+    $('body').on('click', '.click', function () {
+        var line = $(this).data('id');
+        vykresliRoutes(line);
     }
 </script>
 
