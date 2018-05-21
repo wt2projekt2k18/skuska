@@ -38,22 +38,22 @@ $total = $link->query(sprintf("SELECT COUNT(routes.id) as total FROM routes WHER
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css"
       rel="stylesheet"/>
-
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="https://drvic10k.github.io/bootstrap-sortable/Scripts/bootstrap-sortable.js"></script>
 
 <style>
-    #myInput {
-        background-position: 10px 12px; /* Position the search icon */
-        background-repeat: no-repeat; /* Do not repeat the icon image */
-        width: 100%; /* Full-width */
-        font-size: 16px; /* Increase font-size */
-        padding: 12px 20px 12px 40px; /* Add some padding */
-        border: 1px solid #ddd; /* Add a grey border */
-        margin-bottom: 12px; /* Add some space below the input */
+    
+
+    th:hover {
+        color: black;
+    }
+	
+	th, .c {
+        text-align: center;
     }
 
-    .switch {
+    /*.switch {
         position: relative;
         display: inline-block;
         width: 40px;
@@ -102,23 +102,28 @@ $total = $link->query(sprintf("SELECT COUNT(routes.id) as total FROM routes WHER
         transform: translateX(17px);
     }
 
-    /* Rounded sliders */
+    // Rounded sliders
     .slider.round {
         border-radius: 23px;
     }
 
     .slider.round:before {
         border-radius: 50%;
-    }
+    }*/
 </style>
 
-<table id="main" class="sortable" style="width: 100%;">
+<table id="main" class="sortable" style="width: 100%; max-width: 100%;">
     <thead>
     <th>From</th>
     <th>To</th>
     <th>Progress</th>
     <th>Type</th>
-    <th>By</th>
+	
+    <?php
+        if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1)
+            echo "<th>By</th>";
+    ?>
+	
     <th>Actions</th>
     </thead>
     <tbody>
@@ -132,27 +137,37 @@ $total = $link->query(sprintf("SELECT COUNT(routes.id) as total FROM routes WHER
 
             echo "<td>" . $route['start'] . "</td>";
             echo "<td>" . $route['end'] . "</td>";
-            echo "<td>" . $route['progress'] . "</td>";
-            echo "<td>" . $route['type'] . "</td>";
-            echo "<td>" . $route['Name'] . " " . $route['Surname'] ."</td>";
-            echo "<td><label class=\"switch\">";
+            echo "<td class='c'>" . $route['progress'] . "</td>";					// class='c'
+            echo "<td class='c'>" . Mod_enum::mod($route['type']) . "</td>";		// class='c'
+			
+            if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1)
+                echo "<td class='c'>" . $route['Name'] . " " . $route['Surname'] ."</td>";	// class='c'
+			
+            echo "<td class='c'><div class=\"switch\"><label >"; // col s12  <div class=\"container\">
 
-            $active = $link->query(sprintf("SELECT `route_id` FROM `actives` WHERE route_id = %d AND user_id = %d;",  $route['id'], $_SESSION['id']));
+            // $active = $link->query(sprintf("SELECT `route_id` FROM `actives` WHERE route_id = %d AND user_id = %d;",  $route['id'], $_SESSION['id']));
+
+            $active = $link->query(sprintf("SELECT `route_id` FROM `actives` WHERE route_id = %d;",  $route['id']));
 
             mysqli_data_seek($active, 0);
 
             $ac = $active->fetch_assoc();
 
-            if($ac["route_id"] === $route["id"])
-            {
-                echo "<input type=\"checkbox\" checked>";
-            }
-            else
-            {
-                echo "<input type=\"checkbox\" >";
+            if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+                if ($ac["route_id"] === $route["id"]) {
+                    echo "<input type=\"checkbox\" checked disabled>";
+                } else {
+                    echo "<input type=\"checkbox\" disabled>";
+                }
+            }else{
+                if ($ac["route_id"] === $route["id"]) {
+                    echo "<input type=\"checkbox\" checked>";
+                } else {
+                    echo "<input type=\"checkbox\" >";
+                }
             }
 
-            echo "<span class=\"slider switch-active-slider round\" data-id=\"" . $route['id'] . "\"></span></label></td>";
+            echo "<span class=\"lever switch-active-slider\" data-id=\"" . $route['id'] . "\"></span></label></div></td>"; // </div>
 
             // TODO sem ide este jeden stlpec kde budu linky na edit a delete
 

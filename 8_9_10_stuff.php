@@ -16,7 +16,7 @@ session_start();
 
 
 //test session
-$_SESSION['id'] = 66;
+$_SESSION['id'] = 544;
 //
 
 
@@ -38,8 +38,14 @@ $users = $link->query("SELECT * FROM `users`");
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://drvic10k.github.io/bootstrap-sortable/Scripts/bootstrap-sortable.js"></script>
+		<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
     </head>
+	<style>
+		table {width: 100%; border: 2px solid green;}
+		tr,td {padding:5px;}
+	</style>
     <body>
+		<div id="tablecontent">
         <table id="main" class="sortable">
             <?php
             $adm = $admin->fetch_assoc();
@@ -61,20 +67,26 @@ $users = $link->query("SELECT * FROM `users`");
             } else {
 				$UserRoutes = $link->query("SELECT * FROM `routes` WHERE `user_id`=\"".$_SESSION['id']."\" OR `type`=2");
 				echo " 	<thead>
-							<th>Start</th>
-							<th>Finish</th>
-							<th>Progress</th>
-							<th>Type</th>
-							<th>Speed</th>
+							<tr>
+								<th>Length</th>
+								<th>Day</th>
+								<th>Start and finish</th>
+								<th>GPS</th>
+								<th>Rating</th>
+								<th>Note</th>
+								<th>Speed</th>
+							</tr>
 						</thead> ";
 				if ($UserRoutes->num_rows > 0) {
 					while($RouteRow = $UserRoutes->fetch_assoc()) {
 						echo "	<tr>
-									<td>".$RouteRow["start"]." </td>
-									<td>".$RouteRow["end"]."</td>
-									<td>".$RouteRow["progress"]."</td>
-									<td>".Mod_enum::mod($RouteRow["type"])."</td>
-									<td>TODO</td>
+									<td>".intdiv($RouteRow["length"], 100)."km </td>
+									<td>".date('m-d', strtotime($RouteRow["created_at"]))." </td>
+									<td>".date('H:i:s', strtotime($RouteRow["created_at"])). " to " .date('H:i:s', strtotime($RouteRow["created_at"]))."</td>
+									<td>".number_format("$RouteRow[start_lat]",3)." ".number_format("$RouteRow[start_long]",3). " / ".number_format("$RouteRow[end_lat]",3)." ".number_format("$RouteRow[end_long]",3)."</td>
+									<td>poop/5</td>
+									<td>McNote Noteynote</td>
+									<td>TODO speed</td>
 								</tr>";
 					}
 				} else {
@@ -83,7 +95,8 @@ $users = $link->query("SELECT * FROM `users`");
             }
             ?>
         </table>
-		
+		</div>
+		<?php if(!$adm["Admin"]) { echo "<button id='export'>Export to PDF</button>"; } ?>
 	<script type="text/javascript">
 	function getUserRoutes(id){
 		$.ajax({
@@ -97,6 +110,32 @@ $users = $link->query("SELECT * FROM `users`");
 			}
 		});
 	}
+	
+	$("#export").click(function() {
+		var pdf = new jsPDF('p', 'pt', 'ledger');
+		source = $('#tablecontent')[0];
+		specialElementHandlers = {
+			'#bypassme' : function(element, renderer) {
+				return true
+			}
+		};
+		margins = {
+			top : 80,
+			bottom : 60,
+			left : 60,
+			width : 522
+		};
+		pdf.fromHTML(source,
+			margins.left,
+			margins.top, {
+				'width' : margins.width,
+				'elementHandlers' : specialElementHandlers
+			},
+
+			function(dispose) {
+				pdf.save('table.pdf');
+			}, margins);
+	});
     </script>
 	
 	</body>

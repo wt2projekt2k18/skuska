@@ -117,7 +117,7 @@ session_start();
                     $_SESSION['school'] = $result['School'];
                     $_SESSION['schooladdress'] = $result['Schooladdress'];
                     $_SESSION['admin'] = $result['Admin'];
-                    echo "Ahoj, " . $_SESSION['name'];
+                    echo "Hello , " . $_SESSION['name'];
                     //TODO
                 } else {
                     if ($result["Verified"] == 2) {
@@ -147,8 +147,8 @@ session_start();
         if ($_SESSION['admin'] == 1) {
             echo " signed in as admin<br>";
             echo "<form action='csvimport.php' method='post' enctype='multipart/form-data'>" .
-                "<label>Please choose a csv file:" .
-                "<label style='background-color:gray; cursor:pointer; text-decoration:underline;' for='upload'>Click here</label>" .
+                "<label>Please choose a csv file : " .
+                "<label style='color:black; background-color:gray; cursor:pointer; text-decoration:underline;' for='upload'>Click here</label>" .
                 "<input type='hidden' name='MAX_FILE_SIZE' value='100000' />" .
                 "<input id='upload' style='display:none;' type='file' name='upload' value='csv'/></label>" .
                 "<input type='submit' name='submit' value='Import users'>" .
@@ -214,7 +214,7 @@ session_start();
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <select name="type">                   
+                    <select  name="type">
                         <option value="1">Private mode</option>
                         <?php
                         if (isset($_SESSION['admin']) AND $_SESSION['admin'] == 1)
@@ -239,23 +239,23 @@ session_start();
     
 </div>
 
-<div id="map" style="height: 720px"></div>
+<div id="map" style="height: 650px"></div>
 
-<div id="allRoutes" class="modal bottom-sheet">
+<div id="allRoutes" class="modal bottom-sheet" style="background-color: inherit">
     <div class="modal-content blue-grey darken-4 white-text">
 
     <?php
         if (isset($_SESSION['admin']) AND $_SESSION['admin'] == 1)
         {
-            echo '<div class="row"><div class="input-field col s12"><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names"></div></div>';
+            echo '<input type="text" id="myInput" class="row input-field col s12" onkeyup="myFunction()" placeholder="Search for names">'; // <div class="row"><div >  </div></div>
         }
     ?>
 
         <div id="routeTable"></div>
     </div>
-    <div class="modal-footer">
-      
-    </div>
+<!--    <div class="modal-footer">-->
+<!--      -->
+<!--    </div>-->
 </div>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5J2wo0KFU2gxeSPhMAs1VA3MxALbXbKU&callback=initMap&libraries=places,geometry"></script>
@@ -287,7 +287,7 @@ session_start();
 
     function refreshTable(page) {
         $.ajax({
-            url : "https://www.webte2tim18.sk/Projekt_ku_skuske/map/route_table.php",
+            url : "/Projekt_ku_skuske/map/route_table.php",
             method: "GET",
             data : {
                 page : page
@@ -332,9 +332,24 @@ session_start();
             params += "&length=" + distance;
         }
 
-        $.ajax({
+//        uprava .... aby sa ukladalo len to co aj existuje .... ajax som presunul do funkcie tryRoute
+
+        var directionsService = new google.maps.DirectionsService;
+
+        var start =  new google.maps.LatLng(startLat, startLon);
+        var end =  new google.maps.LatLng(endLat,endLon);
+
+        var request = {
+            origin: start,
+            destination: end,
+            travelMode: 'WALKING'
+        };
+
+        tryRoute( request, directionsService, params);
+
+   /*     $.ajax({
             method : "POST",
-            url : "https://www.webte2tim18.sk/Projekt_ku_skuske/map/save_route.php",
+            url : "/Projekt_ku_skuske/map/save_route.php",
             data : params,
             success: function (data) {
                 console.log(data);
@@ -351,18 +366,20 @@ session_start();
                 }
                 alert(message);
             }
-        });
+        });*/
     });
 
+
     $('body').on('click', '.switch-active-slider', function () {
+        
         $.ajax({
             method : "POST",
             data : {
                 id : $(this).data('id')
             },
-            url: "https://www.webte2tim18.sk/Projekt_ku_skuske/map/change_route_status.php",
+            url: "/Projekt_ku_skuske/map/change_route_status.php",
             success : function (data) {
-                console.log(JSON.parse(data));
+                console.log(data);
 
                 initMap({
                     page : currentPage
@@ -375,6 +392,39 @@ session_start();
             }
         });
     });
+
+    function tryRoute(request, service, params) {
+        console.log("try");
+        service.route(request, function(response, status) {
+
+            if (status === 'OK') {
+
+                $.ajax({
+                    method : "POST",
+                    url : "/Projekt_ku_skuske/map/save_route.php",
+                    data : params,
+                    success: function (data) {
+                        console.log(data);
+                        refreshTable(1);
+                    },
+                    error : function (data) {
+                        console.log(data);
+                        data = JSON.parse(data.responseText);
+                        var message = '';
+
+
+                        for (var i = 0 ; i < data.errors.length ; i++) {
+                            message += data.errors[i] + "\n";
+                        }
+                        alert(message);
+                    }
+                });
+            } else {
+                alert("No route could be found between the origin and destination");
+                console.log("Nastala chyba v zapise : " + status);
+            }
+        });
+    }
 </script>
 
 <footer class="page-footer blue-grey darken-4">

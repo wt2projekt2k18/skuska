@@ -105,7 +105,9 @@ html {
 #test3,
 #csvContainer {
     position: relative;
-    padding-top: 25px;
+    padding: 25px 0 30px 0;
+    /*height: 235px;*/
+
     /*padding-bottom: 2%;*/
     
 }
@@ -140,3 +142,37 @@ html {
     position: relative; bottom: 0; left: 0; right: 0;
   
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #455a64; /* blue-grey-darken 2*/
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #263238; /* blue-grey-darken 4*/
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #37474f; /* blue-grey-darken 3*/
+}
+
+input::placeholder {
+	padding-left: 30px;
+}
+
+#myInput {
+        /*background-position: 10px 12px; 
+        background-repeat: no-repeat; */
+        width: calc(100% - 15px); 
+        font-size: 16px;
+        padding: 12px 15px 12px 0; 
+        border: 1px solid #ddd; 
+        margin-bottom: 12px; 
+    }

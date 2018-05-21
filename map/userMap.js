@@ -6,6 +6,7 @@ var startPlaceLocation;
 var endPlaceSet = false;
 var endPlaceLocation;
 var params = {};
+var delayFactor = 100;
 
 function initMap(get) {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -170,7 +171,7 @@ function initSearchInput() {
 function getRoutes() {
     $.ajax({
         type: "GET",
-        url: "https://www.webte2tim18.sk/Projekt_ku_skuske/map/loadRoutesFromDatabase.php",
+        url: "/Projekt_ku_skuske/map/loadRoutesFromDatabase.php",
         async: false,
         data: params,
         success: function (data) {
@@ -192,7 +193,7 @@ function getRoutes() {
 
                 // Javascript problem ked mas if (routes[i]['is_active']) tak zobere aj false ako true lebo je tam string.
                 if (routes[i]['is_active'] == true) {
-                    routeColor = "red";
+                    routeColor = "green";
                 }
 
                 directionsDisplay = new google.maps.DirectionsRenderer({
@@ -218,8 +219,14 @@ function displayRoute(request, service, display) {
     service.route(request, function(response, status) {
 
         if (status === 'OK') {
+            console.log(delayFactor);
             display.setDirections(response);
 
+        } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
+            delayFactor++;
+            setTimeout(function () {
+                displayRoute(request, service, display);
+            }, delayFactor);
         } else {
             alert('Could not display directions due to: ' + status);
         }
