@@ -16,7 +16,7 @@ session_start();
 
 
 //test session
-$_SESSION['id'] = 544;
+$_SESSION['id'] = 549;
 //
 
 
@@ -65,7 +65,12 @@ $users = $link->query("SELECT * FROM `users`");
                     echo "<tr><td>No users</td></tr>";
                 }
             } else {
-				$UserRoutes = $link->query("SELECT * FROM `routes` WHERE `user_id`=\"".$_SESSION['id']."\" OR `type`=2");
+				$UserRoutes = $link->query("SELECT * 
+											FROM `routes` 
+											INNER JOIN `run` 
+												ON `run.route_id`=`routes.id` 
+											WHERE `routes.user_id`=\"".$_SESSION['id']."\" 
+												OR `routes.type`=2");
 				echo " 	<thead>
 							<tr>
 								<th>Length</th>
@@ -80,12 +85,12 @@ $users = $link->query("SELECT * FROM `users`");
 				if ($UserRoutes->num_rows > 0) {
 					while($RouteRow = $UserRoutes->fetch_assoc()) {
 						echo "	<tr>
-									<td>".intdiv($RouteRow["length"], 100)."km </td>
-									<td>".date('m-d', strtotime($RouteRow["created_at"]))." </td>
-									<td>".date('H:i:s', strtotime($RouteRow["created_at"])). " to " .date('H:i:s', strtotime($RouteRow["created_at"]))."</td>
-									<td>".number_format("$RouteRow[start_lat]",3)." ".number_format("$RouteRow[start_long]",3). " / ".number_format("$RouteRow[end_lat]",3)." ".number_format("$RouteRow[end_long]",3)."</td>
-									<td>poop/5</td>
-									<td>McNote Noteynote</td>
+									<td>".$RouteRow["Kilometers"]."km </td>
+									<td>".$RouteRow["Day"]." </td>
+									<td>".$RouteRow["start_time"]." to ".$RouteRow["end_time"]."</td>
+									<td>".number_format("$RouteRow[GPS_start]",3)." / ".number_format("$RouteRow[GPS_end]",3)."</td>
+									<td>".$RouteRow["Rating"]."</td>
+									<td>".$RouteRow["Comment"]."</td>
 									<td>TODO speed</td>
 								</tr>";
 					}

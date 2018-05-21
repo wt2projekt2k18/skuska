@@ -17,7 +17,7 @@ if ($_POST['nyomjadneki']) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO `run`( `route_id`, `Day`, `start_time`, `end_time`, `Kilometers`, `GPS start`, `GPS end`, `Rating`, `Comment`) VALUES (?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO `run`( `route_id`, `Day`, `start_time`, `end_time`, `Kilometers`, `GPS_start`, `GPS_end`, `Rating`, `Comment`) VALUES (?,?,?,?,?,?,?,?,?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssssssss", $_POST['route'],$_POST['day'], $_POST['start'], $_POST['end'], $_POST['km'], $_POST['gpsstart'], $_POST['gpsend'], $_POST['rating'], $_POST['comment']);
     $stmt->execute();

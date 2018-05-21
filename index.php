@@ -125,11 +125,9 @@ if (isset($_SESSION['email'])) {
             <div class="row center">
                 <!--<h3 class="header col s12 light">About Fast and FEIous</h3>-->
                 <h5 class="header col s12 light">
-                    TODO Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Itaque, necessitatibus!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus illum tempora earum odit
-                    voluptate fugiat?
-
+                    <p>I am your new running companion<p>
+                    <p>Just sign up and you are good to go!<p>
+                    <p><p>
                 </h5>
             </div>
         </div>

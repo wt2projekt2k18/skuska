@@ -7,6 +7,8 @@ session_start();
     <meta http-equiv="Content-Type" content="text/plain; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="shortcut icon" type="image/png" href="img/logofavicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="https://www.webte2tim18.sk/Projekt_ku_skuske/index.php/logofavicon.png"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
@@ -20,6 +22,61 @@ session_start();
 
 </head>
 <body id="gradientIndex">
+<?php
+require "config.php";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+$conn->set_charset("utf8");
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+if (isset($_SESSION['email'])) {
+    
+} elseif (isset($_POST['login'])) {
+    $login = $_POST['email'];
+    $heslo = $_POST['password'];
+    $sql = $conn->query("SELECT * FROM `users` WHERE Email='$login'");
+    $result = $sql->fetch_assoc();
+    $conn->close();
+    if (!empty($result)) {
+        if (password_verify($heslo, $result['Password'])) {
+            if ($result["Verified"] == 1) {
+                $_SESSION['email'] = $result['Email'];
+                $_SESSION['id'] = $result['ID'];
+                $_SESSION['password'] = $result['Password'];
+                $_SESSION['name'] = $result['Name'];
+                $_SESSION['surname'] = $result['Surname'];
+                $_SESSION['city'] = $result['City'];
+                $_SESSION['address'] = $result['Address'];
+                $_SESSION['psc'] = $result['PSC'];
+                $_SESSION['school'] = $result['School'];
+                $_SESSION['schooladdress'] = $result['Schooladdress'];
+                $_SESSION['admin'] = $result['Admin'];
+                
+            } else {
+                if ($result["Verified"] == 2) {
+                    echo "<form id='setpsw' action='newpassword.php' method='post' class='grey-text'>
+                        <input type='hidden' name='usermail' value='" . $result['Email'] . "'>
+                        </form>";
+                    echo "<script>document.getElementById('setpsw').submit();</script>";
+                    exit();
+                }
+                header("Location:index.php?login=notverified");
+                exit();
+            }
+        } else {
+            header("Location:index.php?login=wrongpassword");
+            exit();
+        }
+    } else {
+        header("Location:index.php?login=wronguser");
+        exit();
+    }
+} else {
+    header("Location:index.php?login=error");
+    exit();
+} ?>
 
 <?php
 if (isset($_POST['start']) AND $_POST['start'] != null) {
@@ -44,42 +101,11 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
         <ul class="tabs tabs-transparent tabs-fixed-width">
             <li class="tab"><a href="#routeForm">Route</a></li>
             <li class="tab"><a class="active" href="#runData">Run data</a></li>
-            <li class="tab"><a href="#test3">SAMUEL!!!</a></li>
-            <li class="tab"><a href="#csvContainer">CSV</a></li>
+            <!--<li class="tab disabled"><a href="#test3">TAB</a></li>-->
+            <li class="tab"><a href="#csvContainer">CSV (admin only)</a></li>
         </ul>
     </div>
 </nav>
-
-<!-- SlideOut menu.. ez nem igazan lesz szukseges
-    <a id="sidenavButton" href="#" data-target="slide-out"
-   class="sidenav-trigger teal btn waves-effect waves-light white-text"><i
-            class="material-icons white-text">menu</i></a>
-
-
-<ul id="slide-out" class="sidenav blue-grey darken-3">
-    <li>
-        <div class="user-view">
-            <div class="background">
-                <img src="img/sw.jpg">
-            </div>
-            <a href="#"><i class="material-icons white-text large">person</i></a>
-            <a href="#"><span class="white-text name">User</span></a>
-            <a href="#"><span class="white-text info">info</span></a>
-        </div>
-    </li>
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link</a></li>
-
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">RandomLink</a></li>
-    <form action="logout.php" method="post" class="container">
-        <input type="submit" name="logout" value="logout" class="btn waves-effect waves-light ">
-    </form>
-
-</ul>-->
-
 
 <div id="runData" class="col s12 container tabWrapper" class="row">
     <form action="run.php" name="run" method="post" class="col s12 grey-text">
@@ -151,108 +177,15 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
     <label id="NE_TORULD_KI">Returnmessage</label>
 </div>
 
-<div id="test3" class="col s12 container tabWrapper">SAMUEL!</div>
+<!--<div id="test3" class="col s12 container tabWrapper">SAMUEL!</div>-->
 
-<!--
-    <div id="test2" class="col s12 container tabWrapper" class="row">
-    <form action="faszom.php" method="post" class="col s12">
-        <label>Kilometers ran
-            <input type="number" name="km" min="0.1" step="0.1" max="42" oninput="validity.valid||(value='');">
-        </label>
-        <label>Day
-            <input type="date" name="day" min="2018-05-21" max="2030-12-31" value="<?php echo date("Y-m-j") ?>" onblur="validity.valid||(value='<?php echo date("Y-m-j") ?>');">
-        </label>
-        <label>Start
-            <input type="time" name="start">
-        </label>
-        <label>End
-            <input type="time" name="end">
-        </label>
-        <label>GPS start
-            <input type="text" name="gpsstart">
-        </label>
-        <label>GPS end
-            <input type="text" name="gpsend">
-        </label>
-        <label>Rating
-            <select>
-                <option name="1" value="1">Never again</option>
-                <option name="2" value="2">Poor</option>
-                <option name="3" value="3">OK</option>
-                <option name="4" value="4">Like it</option>
-                <option name="5" value="5" selected="selected">Fantastic</option>
-            </select>
-        </label>
-        <label>Comment
-            <input type="text" name="comment">
-        </label>
-        <input type="submit" name="runsubmit" value="Send">
-    </form>
-    <label id="NE_TORULD_KI">Returnmessage</label>
-</div>
--->
 
 <div id="csvContainer" class="col s12 container tabWrapper grey-text">
     <!--<div id="csvContainer" class="">-->
     <?php
-    require "config.php";
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    $conn->set_charset("utf8");
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    if (isset($_SESSION['email'])) {
-        echo "" . $_SESSION['name'];
-    } elseif (isset($_POST['login'])) {
-        $login = $_POST['email'];
-        $heslo = $_POST['password'];
-        $sql = $conn->query("SELECT * FROM `users` WHERE Email='$login'");
-        $result = $sql->fetch_assoc();
-        $conn->close();
-        if (!empty($result)) {
-            if (password_verify($heslo, $result['Password'])) {
-                if ($result["Verified"] == 1) {
-                    $_SESSION['email'] = $result['Email'];
-                    $_SESSION['id'] = $result['ID'];
-                    $_SESSION['password'] = $result['Password'];
-                    $_SESSION['name'] = $result['Name'];
-                    $_SESSION['surname'] = $result['Surname'];
-                    $_SESSION['city'] = $result['City'];
-                    $_SESSION['address'] = $result['Address'];
-                    $_SESSION['psc'] = $result['PSC'];
-                    $_SESSION['school'] = $result['School'];
-                    $_SESSION['schooladdress'] = $result['Schooladdress'];
-                    $_SESSION['admin'] = $result['Admin'];
-                    echo "Hello , " . $_SESSION['name'];
-                    //TODO
-                } else {
-                    if ($result["Verified"] == 2) {
-                        echo "<form id='setpsw' action='newpassword.php' method='post' class='grey-text'>
-                        <input type='hidden' name='usermail' value='" . $result['Email'] . "'>
-                        </form>";
-                        echo "<script>document.getElementById('setpsw').submit();</script>";
-                        exit();
-                    }
-                    header("Location:index.php?login=notverified");
-                    exit();
-                }
-            } else {
-                header("Location:index.php?login=wrongpassword");
-                exit();
-            }
-        } else {
-            header("Location:index.php?login=wronguser");
-            exit();
-        }
-    } else {
-        header("Location:index.php?login=error");
-        exit();
-    }
-
     if (isset($_SESSION['admin'])) {
         if ($_SESSION['admin'] == 1) {
+            echo "Hello , " . $_SESSION['name'];
             echo " signed in as admin";
             echo "<div class='container'><div class='row'><div class='col s12'><form action='csvimport.php' method='post' enctype='multipart/form-data' class='grey-text'>" .
 
