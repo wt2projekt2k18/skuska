@@ -372,26 +372,32 @@ session_start();
 
     $('body').on('click', '.switch-active-slider', function () {
 //        alert("bubub");
-        $.ajax({
-            method : "POST",
-            data : {
-                id : $(this).data('id')
-            },
-            url: "/Projekt_ku_skuske/map/change_route_status.php",
-            success : function (result) {
-                console.log(result);
-                alert(result);
 
-                initMap({
-                    page : currentPage
-                });
-            },
-            error : function (d) {
-                d = JSON.parse(d.responseText);
+                    $.ajax({
+                        method : "POST",
+                        data : {
+                            id : $(this).data('id')
+                        },
+                        url: "/Projekt_ku_skuske/map/change_route_status.php",
+                        success : function (result) {
+                            console.log("result : " + result);
+                            if (result)
+                            {
+                                alert(result);
+//                                refreshTable(1);
+//                                document.getElementById($(this).data('id')).removeAttr("checked");
+                            }
+                            initMap({
+                                page : currentPage
+                            });
+                        },
+                        error : function (d) {
+                            d = JSON.parse(d.responseText);
 
-                console.log(d);
-            }
-        });
+                            console.log(d);
+                        }
+                    });
+
     });
 
     function tryRoute(request, service, params) {

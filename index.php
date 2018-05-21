@@ -28,7 +28,7 @@ if (isset($_SESSION['email'])) {
     
             <ul class="right">
                 <li><a class='waves-effect waves-light white-text' href='index_map/indexGmap_final.php'><i class='material-icons white-text'>map</i></a></li>
-                <li><a class='waves-effect waves-light white-text' href='news.php?admin=true'><i class='material-icons white-text'>fiber_new</i></a></li>
+                <li><a class='waves-effect waves-light white-text' href='news.php'><i class='material-icons white-text'>fiber_new</i></a></li>
             </ul>
     
         </div>

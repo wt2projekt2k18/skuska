@@ -56,7 +56,24 @@ session_start();
                 </button>
             </form></div>
               ";
-            //TODO 4 return messages
+            echo "<label>";
+            if(isset($_GET['append'])){
+                if($_GET['append']=="fail"){
+                    echo "Could not save news.";
+                }
+            }
+            if(isset($_GET['letter'])){
+                if($_GET['letter']=="sent"){
+                    echo "Newsletter was sent.";
+                }
+                if($_GET['letter']=="notsent"){
+                    echo "Could not send newsletter to one of the recipients";
+                }
+                if($_GET['letter']=="dberror"){
+                    echo "Could not send newsletter - database error";
+                }
+            }
+            echo "</label>";
         }
     }
     $content = file_get_contents("news_body.html");

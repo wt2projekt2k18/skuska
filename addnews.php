@@ -14,7 +14,7 @@ if(isset($_POST['content'])){
     $text.=file_get_contents("news_body.html");
     $text = str_replace(["\r\n", "\r", "\n"], "<br/>", $text);
     file_put_contents("news_body.html",$text);
-    header("Location:news.php?admin=true&append=success");
+    header("Location:news.php?admin=true");
     exit();
 }
 else{

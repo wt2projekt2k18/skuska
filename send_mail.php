@@ -1,9 +1,5 @@
 <?php
 require "./PHPMailer-5.2.4/class.phpmailer.php";
-//echo $_POST['mail'];
-//echo $_POST['lastname'];
-//echo $_POST['verification'];
-//print_r($_POST);
 
 $mail = new PHPMailer();
 $mail->IsSMTP();
@@ -19,11 +15,11 @@ $mail->Password = "webteadmin";
 $mail->SetFrom("webte2tim18@gmail.com");
 
 if (isset($_POST['verification'])) {
-    $mail->Subject = "Potvrdenie registrácie";
-    $mail->Body = "Ahoj," . $_POST['lastname'] . "<br><br> bla bla bla... klikni na <a href=https://www.webte2tim18.sk/Projekt_ku_skuske/verify.php?ver=" . $_POST['verification'] . "&mail=" . $_POST['mail'] . ">link</a> aby si dokončil svoju registráciu.";
+    $mail->Subject = "Fast & FEIous ";
+    $mail->Body = "Hi," . $_POST['lastname'] . "<br><br>Welcome to Fast and FEIous! We are glad that you joined our community. You can finish your sign up process by clicking<a href=https://www.webte2tim18.sk/Projekt_ku_skuske/verify.php?ver=" . $_POST['verification'] . "&mail=" . $_POST['mail'] . ">here</a>.We hope that you will enjoy our service.<br><br>Best regards,<br><br>Team Fast and FEIous";
     $mail->AddAddress($_POST['mail']);
     if (!$mail->Send()) {
-//echo "Mailer error".$mail->ErrorInfo;
+        //echo "Mailer error".$mail->ErrorInfo;
         header("Location:registration.php?reg=mailerror");
         exit();
     } else {

@@ -168,9 +168,9 @@ $total = $link->query(sprintf("SELECT COUNT(routes.id) as total FROM routes WHER
 
             }else{
                 if ($ac["route_id"] === $route["id"]) {
-                    echo "<input type=\"checkbox\" checked>";
+                    echo "<input type=\"checkbox\" id=\"" . $route['id'] . "\" checked >";
                 } else {
-                    echo "<input type=\"checkbox\" >";
+                    echo "<input type=\"checkbox\" id=\"" . $route['id'] . "\">";
                 }
 
                 echo "<span class=\"lever switch-active-slider\" data-id=\"" . $route['id'] . "\"></span></label></div></td>"; // </div>
