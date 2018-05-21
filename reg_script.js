@@ -16,7 +16,7 @@ document.getElementById("formular").onsubmit = function () {
     var email = emailcheck(document.getElementById("email").value);
     var psc = psccheck();
     var answer = email.responseText !== "Email already exists";
-    var pw=pass();
+    var pw = pass();
     return answer && psc && pw;
 };
 

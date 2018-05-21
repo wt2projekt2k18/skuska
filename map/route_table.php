@@ -145,9 +145,13 @@ $total = $link->query(sprintf("SELECT COUNT(routes.id) as total FROM routes WHER
 			
             echo "<td class='c'><div class=\"switch\"><label >"; // col s12  <div class=\"container\">
 
-            // $active = $link->query(sprintf("SELECT `route_id` FROM `actives` WHERE route_id = %d AND user_id = %d;",  $route['id'], $_SESSION['id']));
+            if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1)
+            {
+                $active = $link->query(sprintf("SELECT `route_id` FROM `actives` WHERE route_id = %d;",  $route['id']));
 
-            $active = $link->query(sprintf("SELECT `route_id` FROM `actives` WHERE route_id = %d;",  $route['id']));
+            } else {
+                $active = $link->query(sprintf("SELECT `route_id` FROM `actives` WHERE route_id = %d AND user_id = %d;",  $route['id'], $_SESSION['id']));
+            }
 
             mysqli_data_seek($active, 0);
 
@@ -159,15 +163,21 @@ $total = $link->query(sprintf("SELECT COUNT(routes.id) as total FROM routes WHER
                 } else {
                     echo "<input type=\"checkbox\" disabled>";
                 }
+
+                echo "<span class=\"lever\" data-id=\"" . $route['id'] . "\"></span></label></div></td>"; // </div>
+
             }else{
                 if ($ac["route_id"] === $route["id"]) {
                     echo "<input type=\"checkbox\" checked>";
                 } else {
                     echo "<input type=\"checkbox\" >";
                 }
+
+                echo "<span class=\"lever switch-active-slider\" data-id=\"" . $route['id'] . "\"></span></label></div></td>"; // </div>
+
             }
 
-            echo "<span class=\"lever switch-active-slider\" data-id=\"" . $route['id'] . "\"></span></label></div></td>"; // </div>
+            //echo "<span class=\"lever switch-active-slider\" data-id=\"" . $route['id'] . "\"></span></label></div></td>"; // </div>
 
             // TODO sem ide este jeden stlpec kde budu linky na edit a delete
 

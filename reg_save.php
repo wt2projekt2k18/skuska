@@ -9,6 +9,7 @@
 
 if ($_POST['csapasdneki']) {
     require "config.php";
+    require "stringgenerator.php";
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
     $conn->set_charset("utf8");
@@ -16,7 +17,6 @@ if ($_POST['csapasdneki']) {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    require "stringgenerator.php";
     $heslo = $_POST["password"];
     $newpassword = password_hash($heslo, PASSWORD_DEFAULT);
     $verification = randomstring(20);

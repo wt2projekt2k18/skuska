@@ -18,19 +18,19 @@
     </h1>
 </header>
 <div>
-<?php
+    <?php
     if (isset($_POST['usermail'])) {
         echo "
           <label>Please type in a new password:<br></label>
           <form id='pswchange' action='pswchange.php' method='post' onsubmit='return passwordmatch()'>
           <label>Zadaj heslo:<input id='psw1' type='password' name='psw1' onkeyup='passwordmatch()'></label><br>
           <label>Zadaj heslo znovu:<input id='psw2' type='password' name='psw2' onkeyup='passwordmatch()'></label><br>
-          <input type='hidden' name='usertochange' value=''>
+          <input type='hidden' name='usertochange' value='" . $_POST['usermail'] . "'>
           <label id='matchreturn'></label><br>
           <input type='submit' name='submit' value='Zmeniť'>";
 
         exit();
-    } else echo "<label>You have nothing to do here!</label>";?>
+    } else echo "<label>You have nothing to do here!</label>"; ?>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>

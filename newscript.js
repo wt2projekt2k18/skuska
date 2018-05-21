@@ -1,5 +1,4 @@
 function passwordmatch() {
-    //alert("vstup do funkcie");
     var prvy = document.getElementById("psw1").value;
     var druhy = document.getElementById("psw2").value;
     var odpoved = document.getElementById("matchreturn");

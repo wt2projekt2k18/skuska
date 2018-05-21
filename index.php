@@ -19,11 +19,18 @@ if (isset($_SESSION['email'])) {
         Fast & FEIous
     </title>
 </head>
+
 <body id="gradientIndex">
 <div class="navbar-fixed">
-    <nav id="navbarIndex" class="blue-grey darken-4">
-        <div class="nav-wrapper container">
-            <a href="index.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-white-720.png" alt="logo"></a>
+    <nav class="blue-grey darken-4">
+        <div class="nav-wrapper">
+            <a href="home.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-white-720.png" alt="logo"></a>
+    
+            <ul class="right">
+                <li><a class='waves-effect waves-light white-text' href='index_map/indexGmap_final.php'><i class='material-icons white-text'>map</i></a></li>
+                <li><a class='waves-effect waves-light white-text' href='news.php?admin=true'><i class='material-icons white-text'>fiber_new</i></a></li>
+            </ul>
+    
         </div>
     </nav>
 </div>

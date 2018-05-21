@@ -24,7 +24,7 @@
 
 <div id="loginForm" class="container">
     <div class="row">
-        <form id="formular" name="registration" action="reg_save.php"  method="post" class="col s12">
+        <form id="formular" name="registration" action="reg_save.php" method="post" class="col s12">
             <div class="row">
                 <div class="input-field col s6">
                     <i class="material-icons prefix white-text">person</i>
@@ -52,25 +52,6 @@
                 </div>
             </div>
             <label style="color:red" id="pswlabel"></label>
-            <!--<label>Priezvisko
-                <input type="text" name="surname" required>
-            </label>
-            <br>
-            <label>Meno
-                <input type="text" name="name" required>
-            </label>
-            <br>
-            <label>Email
-                <input id="email" type="email" name="email" required>
-            </label>
-            <label style="color:red" id="emaillabel"></label>
-            <br>
-
-            <label>Heslo
-                <input id="pw" type="password" name="password" required>
-            </label>
-            <label style="color:red" id="pswlabel"></label>
-            <br>-->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix white-text">location_city</i>
@@ -93,23 +74,6 @@
                     <label for="address">Address</label>
                 </div>
             </div>
-            <!--<label>Bydlisko
-                <input type="text" name="city" required>
-            </label>
-            <br>
-            <label>PSČ
-                <input id="psc" type="number" name="psc" required>
-            </label>
-            <label style="color:red" id="psclabel"></label>
-            <br>
-            <label>Bydlisko (adresa)
-                <input type="text" name="address" required>
-            </label>
-            <br>-->
-            <!--<label>
-                <input id="check" type="checkbox" name="highschooler" onclick="highschoolcheck();">I am a high school student
-            </label>
-            <br>-->
             <div class="row">
                 <div class="col s12">
                     <label>
@@ -119,14 +83,6 @@
                 </div>
             </div>
             <div id="optional" class="row">
-                <!--<label>High school name
-                    <input type="text" name="school">
-                </label>
-                
-                <label>High school address
-                    <input type="text" name="schooladdress">
-                </label>-->
-
                 <div class="input-field col s6">
                     <input id="school" type="text" name="school" class="white-text">
                     <label for="school">High school name</label>
@@ -137,10 +93,11 @@
                 </div>
             </div>
             <br id="break">
-<!--            <input type="submit" name="submit" value="Registrácia">-->
+            <!--            <input type="submit" name="submit" value="Registrácia">-->
             <button id="regButton2" name="csapasdneki" value="Hello"
                     class="col s4 offset-s4 btn waves-effect waves-light blue-grey darken-4">
-                <span class="white-text">Sign up</span><i class="material-icons right white-text">keyboard_arrow_right</i>
+                <span class="white-text">Sign up</span><i
+                        class="material-icons right white-text">keyboard_arrow_right</i>
             </button>
         </form>
     </div>

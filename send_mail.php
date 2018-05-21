@@ -32,12 +32,12 @@ if (isset($_POST['verification'])) {
     }
 }
 if (isset($_POST['csv'])) {
-    $mail->Subject = "Prednastavené heslá užívateľov";
-    $mail->Body = "Heslá užívateľov nahraných pomocou csv súboru:<br><br>" . $_POST['csv'];
+    $mail->Subject = "Fast & FEIous - Default passwords for users";
+    $mail->Body = "Default passwords for users imported from csv file:<br><br>" . $_POST['csv'];
     $mail->AddAddress($_POST['mail']);
     if (!$mail->Send()) {
         //echo "Mailer error".$mail->ErrorInfo;
-        header("location:home.php?csverror=unexpected");
+        header("location:home.php?csverror=mailerror");
         exit();
     } else {
         header("location:home.php?csvsuccess=true");

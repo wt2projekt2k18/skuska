@@ -21,4 +21,4 @@ else{
     header("Location:news.php?admin=true&append=fail");
     exit();
 }
-?>
+

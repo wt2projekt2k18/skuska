@@ -18,8 +18,8 @@ if (isset($_POST['psw1']) && isset($_POST['usertochange'])) {
     $noveheslo = $_POST['psw1'];
     $dbheslo = password_hash($noveheslo, PASSWORD_DEFAULT);
 
-    $conn->query("UPDATE `users` SET `Verified`=1 WHERE Email='".$_POST['usertochange']."'");
-    $conn->query("UPDATE `users` SET `Password`='$dbheslo' WHERE Email='".$_POST['usertochange']."'");
+    $conn->query("UPDATE `users` SET `Verified`=1 WHERE Email='" . $_POST['usertochange'] . "'");
+    $conn->query("UPDATE `users` SET `Password`='$dbheslo' WHERE Email='" . $_POST['usertochange'] . "'");
     $conn->close();
     header("Location:index.php?newpsw=success");
     exit();

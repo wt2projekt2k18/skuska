@@ -8,7 +8,8 @@ session_start();
     <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <title>
         Fast & FEIous
     </title>
@@ -17,23 +18,25 @@ session_start();
 <div class="navbar-fixed">
     <nav class="blue-grey darken-4">
         <div class="nav-wrapper">
-            <a href="home.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-white-720.png" alt="logo"></a>
-    
+            <a href="home.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-white-720.png"
+                                                              alt="logo"></a>
+
             <ul class="right">
-                <li><a class='waves-effect waves-light white-text' href='index_map/indexGmap_final.php'><i class='material-icons white-text'>map</i></a></li>
-                <li><a class='waves-effect waves-light white-text' href='news.php?admin=true'><i class='material-icons white-text'>fiber_new</i></a></li>
+                <li><a class='waves-effect waves-light white-text' href='index_map/indexGmap_final.php'><i
+                                class='material-icons white-text'>map</i></a></li>
+                <li><a class='waves-effect waves-light white-text' href='news.php?admin=true'><i
+                                class='material-icons white-text'>fiber_new</i></a></li>
             </ul>
-    
+
         </div>
     </nav>
 </div>
 
 <div id="newsContainer" class="container">
     <?php
-    
+
     if (isset($_SESSION['admin']) && isset($_GET['admin'])) {
-        if ($_SESSION['admin'] == 1 && $_GET['admin']=="true") {
-            //TODO Zmenit velkost inputu podla potreby
+        if ($_SESSION['admin'] == 1 && $_GET['admin'] == "true") {
             echo "<div class='row'><form name='aktuality' method='post' action='addnews.php' class='col s8 offset-s2'><div class='row'>
                 <div class='input-field col s12'>
                     <textarea id='textarea1' name='content' class='materialize-textarea white-text'></textarea>

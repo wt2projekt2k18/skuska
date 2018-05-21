@@ -6,6 +6,7 @@
  * Time: 10:58 AM
  */
 
+//credit:https://stackoverflow.com/questions/48124/generating-pseudorandom-alpha-numeric-strings
 function randomstring($length)
 {
     $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';

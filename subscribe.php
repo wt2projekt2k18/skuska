@@ -6,24 +6,24 @@
  * Time: 9:47 AM
  */
 
-require "stringgenerator.php";
-
 if (isset($_POST['buttonNewsletter'])) {
     require "config.php";
-// Create connection
+    require "stringgenerator.php";
+    // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
     $conn->set_charset("utf8");
-// Check connection
+    // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $hash=randomstring(10);
+    $hash = randomstring(10);
     $sql = "INSERT INTO `newsletter`( `Mail`, `unsubscribe`) VALUES (?,?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $_POST['emailNewsletter'], $hash);
     $stmt->execute();
     if (strlen($stmt->error) > 0) {
         //echo $stmt->error;
+        $conn->close();
         header("Location:index.php?subscription=dberror");
         exit();
     }

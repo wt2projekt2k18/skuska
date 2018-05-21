@@ -371,15 +371,16 @@ session_start();
 
 
     $('body').on('click', '.switch-active-slider', function () {
-        
+//        alert("bubub");
         $.ajax({
             method : "POST",
             data : {
                 id : $(this).data('id')
             },
             url: "/Projekt_ku_skuske/map/change_route_status.php",
-            success : function (data) {
-                console.log(data);
+            success : function (result) {
+                console.log(result);
+                alert(result);
 
                 initMap({
                     page : currentPage
