@@ -14,20 +14,10 @@ session_start();
     <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-
     <title>
         Fast & FEIous
     </title>
-    <style>
-        /*#map {
-            height: 100%;
-        }*/
-        /*html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }*/
-    </style>
+
 </head>
 <body id="gradientIndex">
 
@@ -37,7 +27,6 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
     echo $_POST['end'];
 }
 ?>
-
 
 <nav class="nav-extended blue-grey darken-4">
     <div class="nav-wrapper">
@@ -50,7 +39,6 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
             <li><a class='waves-effect waves-light white-text' href='news.php?admin=true'><i
                             class='material-icons white-text'>fiber_new</i></a></li>
         </ul>
-
     </div>
     <div class="nav-content">
         <ul class="tabs tabs-transparent tabs-fixed-width">
@@ -92,8 +80,25 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
 
 </ul>-->
 
+
 <div id="runData" class="col s12 container tabWrapper" class="row">
-    <form action="faszom.php" method="post" class="col s12 grey-text">
+    <form action="run.php" name="run" method="post" class="col s12 grey-text">
+        <?php
+        require "config.php";
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn->set_charset("utf8");
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $sql = "SELECT `id`,`start`,`end` FROM `routes` WHERE user_id=" . $_SESSION['id'];
+        $result = $conn->query($sql);
+        echo "<select name='route'>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<option value='" . $row['id'] . "'>" . $row['start'] . " - " . $row['end'] . "</option>";
+        }
+        echo "</select>";
+        ?>
         <div class="row">
             <div class="input-field col s2">
                 <input id="kilometresID" type="number" step="0.1" name="km">
@@ -102,14 +107,14 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
             </div>
             <div class="input-field col s2">
                 <input id="dateID" type="text" name=day class="datepicker">
-                <!--<input type="date" name="day" min="2018-05-21" max="2030-12-31" value="<?php echo date("Y-m-j")?>" onblur="validity.valid||(value='<?php echo date("Y-m-j")?>');">-->
+                <!--<input type="date" name="day" min="2018-05-21" max="2030-12-31" value="<?php echo date("Y-m-j") ?>" onblur="validity.valid||(value='<?php echo date("Y-m-j") ?>');">-->
                 <label for="dateID">Date</label>
             </div>
-            <div class="input-field col s2">        
+            <div class="input-field col s2">
                 <input for="timeStartID" type="text" name="start" class="timepicker">
                 <label for="timeStartID">Start</label>
             </div>
-            <div class="input-field col s2">           
+            <div class="input-field col s2">
                 <input for="timeEndID" type="text" name="end" class="timepicker">
                 <label for="timeEndID">End</label>
             </div>
@@ -118,18 +123,18 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
                 <label for="gpsStartID">GPS start</label>
             </div>
             <div class="input-field col s2">
-                <input id="gpsEndID" type="text" name="gpsstart">
+                <input id="gpsEndID" type="text" name="gpsend">
                 <label for="gpsEndID">GPS end</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s4">
-                <select id="ratingID">
-                    <option name="1" value="1">Never again</option>
-                    <option name="2" value="2">Poor</option>
-                    <option name="3" value="3">OK</option>
-                    <option name="4" value="4">Like it</option>
-                    <option name="5" value="5" selected="selected">Fantastic</option>
+                <select id="ratingID" name="rating">
+                    <option name="1" value="Never again">Never again</option>
+                    <option name="2" value="Poor">Poor</option>
+                    <option name="3" value="OK">OK</option>
+                    <option name="4" value="Like it">Like it</option>
+                    <option name="5" value="Fantastic" selected="selected">Fantastic</option>
                 </select>
                 <label for="ratingID">Rating</label>
             </div>
@@ -137,7 +142,8 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
                 <input id="commentID" type="text" name="comment">
                 <label for="commentID">Comment</label>
             </div>
-            <button id="runsubmitButton" type="submit" name="runsubmit" class="col s4 btn teal waves-effect waves-light">
+            <button id="runsubmitButton" name="nyomjadneki" value="asdasd"
+                    class="col s4 btn teal waves-effect waves-light">
                 Save<i class="material-icons right white-text">save_alt</i>
             </button>
         </div>
@@ -154,7 +160,7 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
             <input type="number" name="km" min="0.1" step="0.1" max="42" oninput="validity.valid||(value='');">
         </label>
         <label>Day
-            <input type="date" name="day" min="2018-05-21" max="2030-12-31" value="<?php echo date("Y-m-j")?>" onblur="validity.valid||(value='<?php echo date("Y-m-j")?>');">
+            <input type="date" name="day" min="2018-05-21" max="2030-12-31" value="<?php echo date("Y-m-j") ?>" onblur="validity.valid||(value='<?php echo date("Y-m-j") ?>');">
         </label>
         <label>Start
             <input type="time" name="start">
@@ -247,14 +253,14 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
 
     if (isset($_SESSION['admin'])) {
         if ($_SESSION['admin'] == 1) {
-            echo " signed in as admin<br>";
-            echo "<form action='csvimport.php' method='post' enctype='multipart/form-data' class='grey-text'>" .
-                "<label>Please choose a csv file : " .
-                "<label style='color:black; background-color:gray; cursor:pointer; text-decoration:underline;' for='upload'>Click here</label>" .
+            echo " signed in as admin";
+            echo "<div class='container'><div class='row'><div class='col s12'><form action='csvimport.php' method='post' enctype='multipart/form-data' class='grey-text'>" .
+
+                "<label style='cursor:pointer; text-decoration:underline;' for='upload'>Choose a csv file</label>" .
                 "<input type='hidden' name='MAX_FILE_SIZE' value='100000' />" .
-                "<input id='upload' style='display:none;' type='file' name='upload' value='csv'/></label>" .
-                "<input type='submit' name='submit' value='Import users'>" .
-                "</form>";
+                "<input id='upload' style='display:none;' type='file' name='upload' value='csv'/>" .
+                "<input type='submit' name='submit' value='Import users' class='btn waves-effect waves-light teal'>" .
+                "</form></div></div></div>";
             if ($_GET['csverror']) {
                 echo "<label style='color:red' id=csv_err_msg>";
                 switch ($_GET['csverror']) {
@@ -302,9 +308,6 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
     }
 
     ?>
-    <form action="logout.php" method="post" class="container">
-        <input type="submit" name="logout" value="logout" class="btn waves-effect waves-light ">
-    </form>
 </div>
 
 <div id="routeForm" class="col s12 tabWrapper container ">
@@ -539,20 +542,34 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
             }
         });
     }
-/*
-    $('body').on('click', '.click', function () {
-        var line = $(this).data('id');
-        vykresliRoutes(line);
-    });*/
+
+    /*
+        $('body').on('click', '.click', function () {
+            var line = $(this).data('id');
+            vykresliRoutes(line);
+        });*/
 </script>
 
-<footer class="page-footer blue-grey darken-4">
-    <div class="footer-copyright blue-grey darken-3">
-        <div class="container">
-            &copy; 2018 WEBTE2
-            <a class="grey-text text-lighten-4 right" href="about.html">About</a>
+<footer class="page-footer blue-grey darken-3">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="col s4">
+                    &copy; 2018 WEBTE2
+                </div>
+
+                <form id="logoutButton" action="logout.php" method="post" class="col s4" align="center">
+                    <input type="submit" name="logout" value="logout"
+                           class="white-text btn-small waves-effect waves-light blue-grey darken-4">
+                </form>
+
+                <div class="col s4">
+                    <a class="grey-text text-lighten-4 right" href="about.html">About</a>
+                </div>
+            </div>
         </div>
     </div>
+
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>

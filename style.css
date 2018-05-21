@@ -117,10 +117,10 @@ html {
     height: 190px;
 }
 
-#sidenavButton {
-    position: fixed;
-    top: 10px;
-    left: 10px;
+#logoutButton {
+    /*position: relative;
+    right: 50%;*/
+   
 }
 
 #allRoutes {
