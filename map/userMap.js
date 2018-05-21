@@ -232,6 +232,53 @@ function displayRoute(request, service, display) {
         }
     });
 }
+/*
+function vykresliRoutes(id)
+{
+    $.ajax({
+        type: "GET",
+        url: "/Projekt_ku_skuske/map/get_route.php",
+        async: false,
+        data: params,
+        success: function (data) {
+            console.log(data);
+            var routes = JSON.parse(data);
+
+            for (var i = 0 ; i < routes.length ; i ++) {
+
+                var start =  new google.maps.LatLng(routes[i]['start_lat'], routes[i]['start_long']);
+                var end =  new google.maps.LatLng(routes[i]['end_lat'], routes[i]['end_long']);
+
+                var request = {
+                    origin: start,
+                    destination: end,
+                    travelMode: 'WALKING'
+                };
+
+                var routeColor = "blue";
+
+                // Javascript problem ked mas if (routes[i]['is_active']) tak zobere aj false ako true lebo je tam string.
+                if (routes[i]['is_active'] == true) {
+                    routeColor = "green";
+                }
+
+                directionsDisplay = new google.maps.DirectionsRenderer({
+                    map: map,
+                    panel: document.getElementById('steps-panel'),
+                    polylineOptions: {
+                        strokeColor: routeColor
+                    }
+                });
+
+                // directionsDisplay.addListener('directions_changed', function() {
+                //   computeTotalDistance(directionsDisplay.getDirections());
+                // });
+
+                displayRoute(request, directionsService, directionsDisplay);
+            }
+        }
+    });
+}*/
 
 // function computeTotalDistance(result) {
 //     let total = 0;

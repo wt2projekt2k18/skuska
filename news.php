@@ -56,7 +56,7 @@ session_start();
                 </button>
             </form></div>
               ";
-            echo "<label>";
+            echo "<div id='labelNews' class='container col s12' align='center'><label>";
             if(isset($_GET['append'])){
                 if($_GET['append']=="fail"){
                     echo "Could not save news.";
@@ -73,7 +73,7 @@ session_start();
                     echo "Could not send newsletter - database error";
                 }
             }
-            echo "</label>";
+            echo "</label></div>";
         }
     }
     $content = file_get_contents("news_body.html");

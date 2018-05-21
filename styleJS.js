@@ -15,7 +15,8 @@
       });
       $('select').formSelect();
       $('.modal').modal();
-    
+      $('.datepicker').datepicker();
+      $('.timepicker').timepicker();
   
     }); // end of document ready
   })(jQuery);

@@ -133,7 +133,7 @@ $total = $link->query(sprintf("SELECT COUNT(routes.id) as total FROM routes WHER
         foreach ($routes as $route)
         {
 
-            echo "<tr>";
+            echo "<tr >"; // class='click'
 
             echo "<td>" . $route['start'] . "</td>";
             echo "<td>" . $route['end'] . "</td>";

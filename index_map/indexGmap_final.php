@@ -21,26 +21,6 @@
     <title>
         Fast & FEIous
     </title>
-    <!--    //-------------------------------------------------------------------------------------------->
-    <!--    //              map style                                                                   -->
-    <!--    //-------------------------------------------------------------------------------------------->
-
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-         * element that contains the map. */
-        /*#map {
-           
-            top: 50px;
-            height: calc(100% - 100px);
-        }*/
-
-        /* Optional: Makes the sample page fill the window. */
-        /*html, body {
-            /*height: 100%;
-            margin: 0;
-            padding: 0;
-        }*/
-    </style>
 
     <!--    //-------------------------------------------------------------------------------------------->
     <!--    //              check-box style                                                                   -->
@@ -57,63 +37,6 @@
             margin-bottom: 12px; /* Add some space below the input */
         }
 
-        /*.switch {
-            position: relative;
-            display: inline-block;
-            width: 40px;
-            height: 23px;
-        }
-
-        .switch input {
-            display: none;
-        }*/
-
-        /*.slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 20px;
-            width: 20px;
-            left: 2px;
-            bottom: 2px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }*/
-
-        /*input:checked + .slider {
-            background-color: #2196F3;
-        }
-
-        input:focus + .slider {
-            box-shadow: 0 0 1px #2196F3;
-        }
-
-        input:checked + .slider:before {
-            -webkit-transform: translateX(17px);
-            -ms-transform: translateX(17px);
-            transform: translateX(17px);
-        }*/
-
-        /* Rounded sliders */
-        /*.slider.round {
-            border-radius: 23px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }*/
     </style>
 </head>
 
@@ -368,7 +291,7 @@
 </script>
 
 
-<footer class="page-footer blue-grey darken-4">
+<footer class="page-footer blue-grey darken-4" style="position: fixed">
     <div class="footer-copyright blue-grey darken-3">
         <div class="container">
             &copy; 2018 WEBTE2
