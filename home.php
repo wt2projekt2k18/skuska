@@ -8,10 +8,10 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="shortcut icon" type="image/png" href="img/logofavicon.png"/>
-    <link rel="shortcut icon" type="image/png" href="https://www.webte2tim18.sk/Projekt_ku_skuske/index.php/logofavicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="https://www.webte2tim18.sk/Projekt_ku_skuske/img/logofavicon.png"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-
+	
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -102,7 +102,18 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
             <li class="tab"><a href="#routeForm">Route</a></li>
             <li class="tab"><a class="active" href="#runData">Run data</a></li>
             <!--<li class="tab disabled"><a href="#test3">TAB</a></li>-->
-            <li class="tab"><a href="#csvContainer">CSV (admin only)</a></li>
+			<!--<li class="tab"><a href="#csvContainer">CSV</a></li>-->
+			 <?php 
+			if (isset($_SESSION['admin']) AND $_SESSION['admin'] == 1) {
+				echo '<li class="tab"><a href="#csvContainer">CSV</a></li>';
+				echo '<script> console.log("som admin a predsa nefunguje"); </script>';
+			} else {
+				echo '<script> console.log("nie som admin a predsa nefunguje"); </script>';
+				echo "<script> $(document).ready(function(){				
+									$('#csvContainer').attr('style', 'display:none');								
+								});  </script>"; // document.getElementById("csvContainer").style.display = "none";
+			}
+			?> 
         </ul>
     </div>
 </nav>
@@ -192,7 +203,7 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
                 "<label style='cursor:pointer; text-decoration:underline;' for='upload'>Choose a csv file</label>" .
                 "<input type='hidden' name='MAX_FILE_SIZE' value='100000' />" .
                 "<input id='upload' style='display:none;' type='file' name='upload' value='csv'/>" .
-                "<input type='submit' name='submit' value='Import users' class='btn waves-effect waves-light teal'>" .
+                "<div class='row'><div class='col s12'><input type='submit' name='submit' value='Import users' class='btn waves-effect waves-light teal'></div></div>" .
                 "</form></div></div></div>";
             if ($_GET['csverror']) {
                 echo "<label style='color:red' id=csv_err_msg>";
@@ -298,6 +309,12 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
     <!--    <div class="modal-footer">-->
     <!--      -->
     <!--    </div>-->
+</div>
+
+<div id="alert" class="modal" style="background-color: inherit"> <!-- bottom-sheet -->    
+	<div class="modal-content blue-grey darken-4 white-text">
+		<div id="alert_info"></div>    
+	</div>    
 </div>
 
 <script async defer
@@ -425,9 +442,15 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
             success: function (result) {
                 console.log("result : " + result);
                 if (result) {
-                    alert(result);
+//                    alert(result);
+					document.getElementById(box).checked = false;
+					
+				/*	document.getElementById("alert_info").innerHTML = result;
 //                                refreshTable(1);
-                    document.getElementById(box).checked = false;
+                    
+					$(document).ready(function(){
+						$('.modal').modal();
+				    });*/
                 } else {
                     initMap({
                         page: currentPage
@@ -466,7 +489,7 @@ if (isset($_POST['start']) AND $_POST['start'] != null) {
                         for (var i = 0; i < data.errors.length; i++) {
                             message += data.errors[i] + "\n";
                         }
-                        alert(message);
+                        console.log("message : " + message);
                     }
                 });
             } else {

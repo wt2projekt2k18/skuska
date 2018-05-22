@@ -4,6 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link rel="shortcut icon" type="image/png" href="img/logofavicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="https://www.webte2tim18.sk/Projekt_ku_skuske/img/logofavicon.png"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script type="text/javascript" src='newscript.js'></script>
@@ -47,7 +49,7 @@
         <div class='row'><div class='col s12' align='center'><label id='matchreturn'></label></div></div>
 
 
-        <div class='row'><input type='submit' name='submit' value='Apply' class='col s4 offset-s4 btn waves-effect waves-light teal'></div></form</div></div>";
+        <div class='row'><input type='submit' name='submit' value='Apply' class='col s4 offset-s4 btn waves-effect waves-light teal'></div></form></div></div>";
 
         exit();
     } else echo "<div id='labelNews' class='container col s12' align='center'><label>You have nothing to do here!</label></div>"; ?>

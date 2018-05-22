@@ -14,6 +14,8 @@
     <meta http-equiv="Content-Type" content="text/plain; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="../style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link rel="shortcut icon" type="image/png" href="img/logofavicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="https://www.webte2tim18.sk/Projekt_ku_skuske/img/logofavicon.png"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -77,7 +79,7 @@
 </div>
 
 
-<div id="map" style="height: 720px"></div>
+<div id="map" style="height: 720px; margin-bottom: 100px;"></div>
 
 
 <script>
@@ -291,7 +293,7 @@
 </script>
 
 
-<footer class="page-footer blue-grey darken-4" style="position: fixed">
+<footer class="page-footer blue-grey darken-4" style="position: fixed"> <!-- style="position: fixed" -->
     <div class="footer-copyright blue-grey darken-3">
         <div class="container">
             &copy; 2018 WEBTE2

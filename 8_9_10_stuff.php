@@ -2,12 +2,12 @@
 include 'config.php';
 
 // Enum
-class Mod_enum {
+/* class Mod_enum {
     private static $enum = array(1 => "private", 2 => "public", 3 => "relay");
     public function mod($id) {
         return self::$enum[$id];
     }
-}
+} */
 
 // DB connect
 $link = mysqli_connect($servername, $username, $password, $dbname);
@@ -15,8 +15,10 @@ $link->set_charset("utf8");
 session_start();
 
 
+//
 //test session
-$_SESSION['id'] = 549;
+$_SESSION['id'] = 549;//66;
+//
 //
 
 
@@ -66,11 +68,18 @@ $users = $link->query("SELECT * FROM `users`");
                 }
             } else {
 				$UserRoutes = $link->query("SELECT * 
-											FROM `routes` 
-											INNER JOIN `run` 
-												ON `run.route_id`=`routes.id` 
-											WHERE `routes.user_id`=\"".$_SESSION['id']."\" 
-												OR `routes.type`=2");
+											FROM routes
+											RIGHT JOIN run
+												ON run.route_id = routes.id
+											WHERE routes.user_id = \"".$_SESSION['id']."\"
+												OR routes.type = 2");
+				$UserAVG = $link->query("SELECT AVG(run.Kilometers) 
+											FROM routes
+											RIGHT JOIN run
+												ON run.route_id = routes.id
+											WHERE routes.user_id = \"".$_SESSION['id']."\"
+												OR routes.type = 2");
+												
 				echo " 	<thead>
 							<tr>
 								<th>Length</th>
@@ -91,7 +100,7 @@ $users = $link->query("SELECT * FROM `users`");
 									<td>".number_format("$RouteRow[GPS_start]",3)." / ".number_format("$RouteRow[GPS_end]",3)."</td>
 									<td>".$RouteRow["Rating"]."</td>
 									<td>".$RouteRow["Comment"]."</td>
-									<td>TODO speed</td>
+									<td>".$RouteRow["Kilometers"]." / TIME->TODO</td>
 								</tr>";
 					}
 				} else {
@@ -101,7 +110,15 @@ $users = $link->query("SELECT * FROM `users`");
             ?>
         </table>
 		</div>
-		<?php if(!$adm["Admin"]) { echo "<button id='export'>Export to PDF</button>"; } ?>
+		
+		<?php 
+		if(!$adm["Admin"]) { 
+			$AVG = $UserAVG->fetch_assoc();
+			$averagekm = $AVG["AVG(run.Kilometers)"];
+			echo "<span>Priemerné odbehnuté kilometre: ".number_format("$averagekm" ,2)."</span><br>";
+			echo "<button id='export'>Export to PDF</button>"; 
+		} 
+		?>
 	<script type="text/javascript">
 	function getUserRoutes(id){
 		$.ajax({
