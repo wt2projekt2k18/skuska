@@ -1,0 +1,180 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/plain; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link rel="shortcut icon" type="image/png" href="img/logofavicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="https://www.webte2tim18.sk/Projekt_ku_skuske/img/logofavicon.png"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <title>
+        Fast & FEIous
+    </title>
+</head>
+
+<body id="gradientIndex">
+
+<nav class="nav-extended blue-grey darken-4">
+    <div class="nav-wrapper">
+        <a href="home.php" class="brand-logo center"><img id="logoFast" src="img/run-with-fei-logo-white-720.png"
+                                                          alt="logo"></a>
+
+        <ul class="right">
+            <li><a class='waves-effect waves-light white-text' href='index_map/indexGmap_final.php'><i
+                    class='material-icons white-text'>map</i></a></li>
+            <li><a class='waves-effect waves-light white-text' href='news.php?admin=true'><i
+                    class='material-icons white-text'>fiber_new</i></a></li>
+        </ul>
+
+    </div>
+    <div class="nav-content">
+        <ul class="tabs tabs-transparent tabs-fixed-width">
+            <li class="tab"><a class="active" href="#team">Our team</a></li>
+            <li class="tab"><a href="#techDoc">Tech documentation</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<!--Súčasťou projektu bude podstránka s technickou dokumentáciou k projektu a rozdelením úloh medzi jednotlivých členov tímu.-->
+
+<div id="techDoc" class="row documentation" style="margin-top: 25px; margin-bottom: 100px">
+    <div class="col s8 offset-s2 container">
+        <div class="card teal darken-1">
+            <div class="card-content white-text center-align">
+                <span class="card-title">PHPmyAdmin</span>
+                <div class="divider"></div>
+                <p>Database management</p>
+            </div>
+            <div class="card-action col s12">
+                <a href="http://147.175.98.149/phpmyadmin/" class="col s12 center-align">PHPmyAdmin link</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s8 offset-s2 container">
+        <div class="card teal darken-1">
+            <div class="card-content white-text center-align">
+                <span class="card-title">Materialize CSS</span>
+                <div class="divider"></div>
+                <p>responsive design, user interface design</p>
+            </div>
+            <div class="card-action col s12">
+                <a href="https://materializecss.com/" class="col s12 center-align">Materialize link</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s8 offset-s2 container">
+        <div class="card teal darken-1">
+            <div class="card-content white-text center-align">
+                <span class="card-title">Adobe Photoshop CC</span>
+                <div class="divider"></div>
+                <p>logo design, favicon, image editing</p>
+            </div>
+            <div class="card-action col s12">
+                <a href="https://www.adobe.com/sk/products/photoshop.html" class="col s12 center-align">Photoshop link</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s8 offset-s2 container">
+        <div class="card teal darken-1">
+            <div class="card-content white-text center-align">
+                <span class="card-title">Bootstrap</span>
+                <div class="divider"></div>
+                <p>Table sorting</p>
+            </div>
+            <div class="card-action col s12">
+                <a href="https://getbootstrap.com/" class="col s12 center-align">Bootstrap link</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s8 offset-s2 container">
+        <div class="card teal darken-1">
+            <div class="card-content white-text center-align">
+                <span class="card-title">Github</span>
+                <div class="divider"></div>
+                <p>Version control</p>
+            </div>
+            <div class="card-action col s12">
+                <a href="https://github.com/wt2projekt2k18" class="col s12 center-align">Github link</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="team" class="row documentation" style="margin-top: 25px; margin-bottom: 100px">
+    <div class="col s8 offset-s2 container">
+        <div class="card teal darken-1">
+            <div class="card-content white-text center-align">
+                <span class="card-title">Dávid Kristian</span>
+                <div class="divider"></div>
+                <p>Created the table for all routes with filter and sorting, implemented switches and added the functionality for them and cooperated on the core of the map visible for unregistered users.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s8 offset-s2 container">
+        <div class="card teal darken-1">
+            <div class="card-content white-text center-align">
+                <span class="card-title">Filip Jančík</span>
+                <div class="divider"></div>
+                <p>Added the Google Map on the homepage, Google Places search bars to insert a new route into the
+                    database, and defined the three types of routes. Configured the required tables in the database.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s8 offset-s2 container">
+        <div class="card teal darken-1">
+            <div class="card-content white-text center-align">
+                <span class="card-title">Gabriel Pulen</span>
+                <div class="divider"></div>
+                <p>Created the registration and login system, including email verification, import from csv file. Set up
+                    database for users. Worked on subscription system, created a mailbox for the team and set up mail
+                    delivery function.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s8 offset-s2 container">
+        <div class="card teal darken-1">
+            <div class="card-content white-text center-align">
+                <span class="card-title">Samuel Kucsera</span>
+                <div class="divider"></div>
+                <p>Created user training tables with additional calculations and with the possibility to export this data to pdf for basic users; user data preview tables for admins</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s8 offset-s2 container">
+        <div class="card teal darken-1">
+            <div class="card-content white-text center-align">
+                <span class="card-title">Zoltán Imre</span>
+                <div class="divider"></div>
+                <p>Full user interface and UX design with logos and stuff including responsive design on all devices</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="page-footer blue-grey darken-4" style="position: fixed">
+    <div class="footer-copyright blue-grey darken-3">
+        <div class="container">
+            &copy; 2018 WEBTE2
+            <a class="grey-text text-lighten-4 right" href="about.html">About</a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script src="styleJS.js"></script>
+
+</body>
+</html>

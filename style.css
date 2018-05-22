@@ -1,3 +1,183 @@
+html {
+    min-height: 100%;
+    /*width: 100%;*/
+    /*margin: 0;*/
+    background-size: cover;
+    background-repeat:no-repeat;
+}
+body {
+    /*height: 100%;*/
+    
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}
+
 header,h1{
     text-align: center;
+}
+footer.page-footer {
+    margin: 0;
+}
+p {
+    line-height: 2rem;
+}
+
+/*registration.css*/
+div#optional{
+    display: none;
+}
+br#break{
+    display:none;
+}
+
+.parallax-container {
+    min-height: 380px;
+    /*top: 150px;*/
+    /*min-height: 460px;*/
+    line-height: 0;
+    height: auto;
+    color: rgba(255,255,255,.9);
+}
+.parallax-container .section {
+    width: 100%;
+}
+
+#logoFast{
+    width: 100px;
+    padding-top: 5px;
+    padding-bottom: 5px; 
+}
+
+#loginForm{
+    position: relative;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+#gradientIndex { 
+    background: linear-gradient(to bottom right, #1D4350, #a43931);
+}
+
+#ultraboostImage {
+    /*-webkit-filter: opacity(30%); 
+    filter: opacity(30%);*/
+    
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+    -webkit-filter: brightness(0.40);
+    filter: brightness(0.40);
+    
+}
+
+#ultraboostText {
+    position: absolute;
+    bottom: 50%;
+    transform: translateY(50%);
+}
+
+#newsContainer {
+    margin-top: 5%;
+}
+
+html {
+    /*height: 100%;*/
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    
+    /*height: 720px;*/
+
+}
+
+#routeForm, 
+#runData, 
+#test3,
+#csvContainer {
+    position: relative;
+    padding: 25px 0 30px 0;
+    /*height: 235px;*/
+
+    /*padding-bottom: 2%;*/
+    
+}
+
+.tabWrapper{
+    position: relative;
+    height: 210px;
+}
+
+#logoutButton {
+    /*position: relative;
+    right: 50%;*/
+   
+}
+
+#allRoutes {
+    overflow-y: scroll; /*vertical scroll*/ 
+}
+
+#mapCheckbox {
+    position: relative;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.documentation {
+    /*position: relative;
+    padding: 20px;*/
+}
+
+.page-footer {
+    position: relative; bottom: 0; left: 0; right: 0;
+  
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #455a64; /* blue-grey-darken 2*/
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #263238; /* blue-grey-darken 4*/
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #37474f; /* blue-grey-darken 3*/
+}
+
+input::placeholder {
+	padding-left: 30px;
+}
+
+#myInput {
+    /*background-position: 10px 12px; 
+    background-repeat: no-repeat; */
+    width: calc(100% - 15px); 
+    font-size: 16px;
+    padding: 12px 15px 12px 0; 
+    border: 1px solid #ddd; 
+    margin-bottom: 12px; 
+}
+
+#labelNews {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

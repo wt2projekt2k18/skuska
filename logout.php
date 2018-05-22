@@ -6,7 +6,6 @@ if (isset ($_POST['logout'])) {
     session_destroy();
     header("Location:index.php?logout=success");
     exit();
-}
-else{
+} else {
     echo "Logout error";
 }

@@ -6,11 +6,6 @@
  * Date: 11-May-18
  * Time: 2:40 PM
  */
-//header('Content-type: text/html; charset=UTF-8');
-//echo "Info:<br>";
-//echo "Meno:" . $_FILES['upload']['name'] . "<br>";
-//echo "Extension:" . $_FILES['upload']['type'] . "<br>";
-//echo "Error:" . $_FILES['upload']['error'] . "<br>";
 
 switch ($_FILES['upload']['error']) {
     case 0:
@@ -46,7 +41,7 @@ switch ($_FILES['upload']['error']) {
         exit();
 }
 
-//TODO link
+//credit:https://stackoverflow.com/questions/10653735/set-utf-8-encoding-for-fread-fwrite
 function utf8_fopen_read($fileName)
 {
     $fc = iconv('windows-1250', 'utf-8', file_get_contents($fileName));
@@ -56,9 +51,21 @@ function utf8_fopen_read($fileName)
     return $handle;
 }
 
+function randomstring($length)
+{
+    $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    $string = '';
+    $max = strlen($characters) - 1;
+    for ($i = 0; $i < $length; $i++) {
+        $string .= $characters[mt_rand(0, $max)];
+    }
+    return $string;
+}
+
 
 function spracujdata()
 {
+    $mailstring = "<table> <tr><th>Priezvisko</th><th>Meno</th><th>Heslo</th></tr>";
     $csv_mimetypes = array(
         'text/csv',
         'text/plain',
@@ -73,7 +80,6 @@ function spracujdata()
     );
     if (in_array($_FILES['upload']['type'], $csv_mimetypes)) {
         echo "csv OK<br>";
-        //TODO Dalsie testy
         $subor = utf8_fopen_read($_FILES['upload']['tmp_name']);
         fgetcsv($subor);//to skip first line
         // Create connection
@@ -90,20 +96,13 @@ function spracujdata()
         if ($subor) {
             while (($buffer = fgets($subor, 4096)) !== false) {
                 $splitted = explode(";", $buffer, PHP_INT_MAX);
-//                echo "<b>Priezvisko:</b> " . $splitted[1];
-//                echo "<b>Meno :</b>" . $splitted[2];
-//                echo "<b>Email :</b>" . $splitted[3];
-//                echo "<b>Skola</b>:" . $splitted[4];
-//                echo "<b>Skola (Adresa):</b>" . $splitted[5];
-//                echo "<b>Bydlisko (ulica):</b>" . $splitted[6];
-//                echo "<b>PSC:</b>" . $splitted[7];
-//                echo "<b>Bydlisko (obec):</b>" . $splitted[8];
-//                echo "<br>";
-                $psw = "DEfault2018WT";
+                $konstanta = 2;
+                $psw = randomstring(20);
                 $newpsw = password_hash($psw, PASSWORD_DEFAULT);
-                $sql = "INSERT INTO `users`( `Surname`, `Name`, `Email`,`Password`, `City`, `PSC`, `Address`, `School`, `Schooladdress`) VALUES (?,?,?,?,?,?,?,?,?)";
+                $mailstring .= "<tr><td>" . $splitted[1] . "</td><td>" . $splitted[2] . "</td><td>" . $psw . "</td></tr>";
+                $sql = "INSERT INTO `users`( `Surname`, `Name`, `Email`,`Password`, `City`, `PSC`, `Address`, `School`, `Schooladdress`, `Verified`) VALUES (?,?,?,?,?,?,?,?,?,?)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("sssssisss", $splitted[1], $splitted[2], $splitted[3], $newpsw, $splitted[8], $splitted[7], $splitted[6], $splitted[4], $splitted[5]);
+                $stmt->bind_param("sssssisssi", $splitted[1], $splitted[2], $splitted[3], $newpsw, $splitted[8], $splitted[7], $splitted[6], $splitted[4], $splitted[5], $konstanta);
                 $stmt->execute();
                 echo $stmt->error . "<br>";
                 if (strlen($stmt->error) > 0) {
@@ -120,8 +119,13 @@ function spracujdata()
             }
             fclose($subor);
             $conn->close();
-            header("location:home.php?csvsuccess=true");
-            exit();
+            $mailstring .= "</table>";
+            echo "<form id='csvform' action='send_mail.php' method='post'>
+                <input type='hidden' name='mail' value='webte2tim18@gmail.com'>
+                <input type='hidden' name='csv' value='" . $mailstring . "'>
+          </form>";
+            echo "<script>document.getElementById('csvform').submit();</script>";
+
         }
     } else {
         header("location:home.php?csverror=extensionerror");

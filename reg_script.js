@@ -15,16 +15,16 @@ function highschoolcheck() {
 document.getElementById("formular").onsubmit = function () {
     var email = emailcheck(document.getElementById("email").value);
     var psc = psccheck();
-    var answer = email.responseText !== "Email už existuje";
-    var pw=pass();
+    var answer = email.responseText !== "Email already exists";
+    var pw = pass();
     return answer && psc && pw;
 };
 
 function pass() {
-    var psw = document.getElementById("pw");
+    var psw = document.getElementById("password");
     if (psw.value.length < 8) {
         //psc.focus();
-        document.getElementById("pswlabel").innerHTML = "Heslo musí obsahovať minimálne 8 znakov";
+        document.getElementById("pswlabel").innerHTML = "Password must be at least 8 characters long.";
         return false;
     }
     else {
@@ -37,7 +37,7 @@ function psccheck() {
     var psc = document.getElementById("psc");
     if (psc.value.length !== 5) {
         //psc.focus();
-        document.getElementById("psclabel").innerHTML = "PSČ musí byť 5 ciferné číslo!";
+        document.getElementById("psclabel").innerHTML = "PSČ must be a 5 digit number!";
         return false;
     }
     else {
